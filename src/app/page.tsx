@@ -199,42 +199,33 @@ export default function HomePage() {
     <div className="text-text bg-bg min-h-screen">
 
       {/* ─── NAV ─── */}
-      <nav className="sticky top-0 z-50 flex items-center justify-between px-6 md:px-10 py-4 border-b border-white/[0.06] bg-[#080808]/90 backdrop-blur-xl">
-        <a href="/" className="flex items-center">
+      <nav className="sticky top-0 z-50 flex items-center justify-between px-6 md:px-10 py-4 border-b border-border bg-bg/90 backdrop-blur-xl">
+        <a href="/">
           <img src="/logo.png" alt="FireReel" className="h-10 w-auto" />
         </a>
         <div className="hidden md:flex items-center gap-8">
           <a href="#how-it-works" className="text-sm text-text-secondary hover:text-text transition">How it works</a>
           <a href="#pricing" className="text-sm text-text-secondary hover:text-text transition">Pricing</a>
           <a href="#work" className="text-sm text-text-secondary hover:text-text transition">Our work</a>
-          <a
-            href="#contact"
-            className="bg-primary text-white rounded-lg px-5 py-2.5 text-sm font-semibold hover:bg-primary-light transition shadow-[0_0_20px_rgba(224,92,42,0.4)]"
-          >
+          <a href="#contact" className="bg-primary text-white rounded-lg px-5 py-2.5 text-sm font-semibold hover:brightness-110 transition shadow-[0_0_20px_rgba(224,92,42,0.25)]">
             Get started →
           </a>
         </div>
-        {/* Mobile CTA */}
-        <a href="#contact" className="md:hidden bg-primary text-white rounded-lg px-4 py-2 text-sm font-semibold">
-          Start →
-        </a>
+        <a href="#contact" className="md:hidden bg-primary text-white rounded-lg px-4 py-2 text-sm font-semibold">Start →</a>
       </nav>
 
       {/* ─── HERO ─── */}
       <section className="relative pt-20 pb-16 px-6 md:px-10 max-w-[920px] mx-auto text-center overflow-hidden">
-        {/* Ambient glow */}
-        <div className="absolute top-[-100px] left-1/2 -translate-x-1/2 w-[700px] h-[500px] rounded-full pointer-events-none"
-          style={{ background: "radial-gradient(ellipse, rgba(224,92,42,0.12) 0%, transparent 70%)" }}
-        />
+        {/* Subtle ambient glow */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] rounded-full pointer-events-none"
+          style={{ background: "radial-gradient(ellipse, rgba(224,92,42,0.07) 0%, transparent 70%)" }} />
 
         <div className="relative">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 text-[11px] tracking-[2px] uppercase text-text-secondary mb-8 border border-white/10 rounded-full px-4 py-2 bg-white/[0.04]">
+          <div className="inline-flex items-center gap-2 text-[11px] tracking-[2px] uppercase text-text-tertiary mb-8 border border-border rounded-full px-4 py-2 bg-card">
             <span className="w-1.5 h-1.5 rounded-full bg-primary inline-block animate-[pulse_2s_infinite]" />
             AI speed · Human quality · Delivered globally
           </div>
 
-          {/* H1 */}
           <h1 className="font-[family-name:var(--font-bebas)] text-[clamp(58px,11vw,112px)] leading-[0.88] tracking-[0.5px] mb-7">
             Video ads that<br />
             actually{" "}
@@ -251,46 +242,36 @@ export default function HomePage() {
             Send us footage. Or don&apos;t. We make stunning ads either way.
           </p>
 
-          {/* CTAs */}
           <div className="flex gap-3 justify-center flex-wrap mb-14">
-            <a
-              href="#contact"
-              className="text-white rounded-xl px-9 py-4 text-[15px] font-semibold transition"
-              style={{
-                background: "linear-gradient(135deg, #E05C2A 0%, #FF7040 100%)",
-                boxShadow: "0 0 40px rgba(224,92,42,0.4), 0 4px 20px rgba(224,92,42,0.2)"
-              }}
-            >
+            <a href="#contact" className="text-white rounded-xl px-9 py-4 text-[15px] font-semibold transition"
+              style={{ background: "linear-gradient(135deg, #E05C2A 0%, #FF7040 100%)", boxShadow: "0 4px 30px rgba(224,92,42,0.35)" }}>
               Get your first ads →
             </a>
-            <a
-              href="#work"
-              className="bg-white/[0.06] text-text border border-white/[0.12] rounded-xl px-9 py-4 text-[15px] font-normal hover:bg-white/[0.1] transition"
-            >
+            <a href="#work" className="bg-card text-text border border-border rounded-xl px-9 py-4 text-[15px] font-normal hover:border-text-secondary transition">
               See examples
             </a>
           </div>
 
-          {/* Social proof */}
+          {/* Social proof bar */}
           <div className="flex items-center justify-center gap-6 flex-wrap">
             <div className="flex items-center gap-1.5">
               {[...Array(5)].map((_, i) => (
-                <svg key={i} className="w-3.5 h-3.5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                <svg key={i} className="w-3.5 h-3.5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                 </svg>
               ))}
               <span className="text-[12px] text-text-secondary ml-1.5">4.9 / 5 from clients</span>
             </div>
-            <span className="text-white/15 hidden sm:block">|</span>
+            <span className="text-border-secondary hidden sm:block">|</span>
             <span className="text-[12px] text-text-secondary">200+ brands served</span>
-            <span className="text-white/15 hidden sm:block">|</span>
+            <span className="text-border-secondary hidden sm:block">|</span>
             <span className="text-[12px] text-text-secondary">$2M+ in ad spend managed</span>
           </div>
         </div>
       </section>
 
       {/* ─── MARQUEE ─── */}
-      <div className="border-y border-white/[0.06] py-4 overflow-hidden bg-white/[0.02]">
+      <div className="border-y border-border py-4 overflow-hidden bg-card">
         <div className="marquee-track">
           {[...clientTypes, ...clientTypes, ...clientTypes, ...clientTypes].map((t, i) => (
             <span key={i} className="text-[11px] text-text-tertiary font-medium uppercase tracking-[2.5px] shrink-0 px-6">
@@ -309,10 +290,7 @@ export default function HomePage() {
             { num: "10×", suffix: "", label: "cheaper than an agency" },
             { num: "$0", suffix: "", label: "setup fee, ever" },
           ].map((s) => (
-            <div
-              key={s.label}
-              className="text-center p-6 rounded-2xl border border-white/[0.07] bg-white/[0.03] hover:border-primary/30 transition"
-            >
+            <div key={s.label} className="text-center p-6 rounded-2xl border border-border bg-card hover:border-primary/40 transition">
               <div className="font-[family-name:var(--font-bebas)] leading-none mb-2"
                 style={{ fontSize: "clamp(36px,5vw,52px)", background: "linear-gradient(135deg, #E05C2A, #FF8C5A)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
                 {s.num}{s.suffix}
@@ -334,19 +312,38 @@ export default function HomePage() {
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           {[
-            { icon: "📱", title: "You have footage", desc: "Send us whatever you've got — phone clips, drone shots, product videos. We'll transform them into scroll-stopping ads with pro editing, captions, music, and voiceover.", highlight: false },
-            { icon: "🔥", title: "You have nothing", desc: "No footage? No problem. We'll source premium stock, use AI-generated visuals, and produce everything from scratch. You won't be able to tell the difference.", highlight: true },
-            { icon: "🤝", title: "Mix and match", desc: "The best results come from a blend — your authentic brand footage combined with our AI production, cinematic editing, and professional polish.", highlight: false },
+            {
+              label: "01",
+              title: "You have footage",
+              tag: "Send it over",
+              desc: "Phone clips, drone shots, product videos, shopfront walk-throughs — send whatever you've got. We'll transform raw footage into scroll-stopping ads with pro editing, captions, music, and voiceover.",
+              highlight: false,
+            },
+            {
+              label: "02",
+              title: "You have nothing",
+              tag: "We build from scratch",
+              desc: "No footage, no assets, no brief. Tell us what you sell and we'll handle the rest — sourcing premium visuals, writing the script, producing the full ad. You won't be able to tell we didn't film it.",
+              highlight: true,
+            },
+            {
+              label: "03",
+              title: "Mix and match",
+              tag: "Best of both",
+              desc: "The highest-converting ads usually blend both — your authentic brand moments combined with cinematic production, AI-enhanced visuals, and a script designed to stop the scroll.",
+              highlight: false,
+            },
           ].map((card) => (
             <div key={card.title}
-              className={`rounded-2xl p-6 border transition ${card.highlight
-                ? "border-primary/40 bg-primary/[0.06] hover:bg-primary/[0.09]"
-                : "border-white/[0.07] bg-white/[0.03] hover:border-white/20 hover:bg-white/[0.05]"
+              className={`rounded-2xl p-7 border transition relative overflow-hidden ${card.highlight
+                ? "border-primary/50 bg-primary/[0.04] hover:bg-primary/[0.07]"
+                : "border-border bg-card hover:border-primary/30"
               }`}
             >
-              <div className="text-2xl mb-4">{card.icon}</div>
-              <h3 className="text-[14px] font-semibold mb-2 text-text">{card.title}</h3>
-              <p className="text-[13px] text-text-secondary leading-[1.65]">{card.desc}</p>
+              <div className="font-[family-name:var(--font-bebas)] text-[52px] leading-none mb-1 text-border-secondary select-none">{card.label}</div>
+              <div className="text-[10px] tracking-[2px] uppercase text-primary font-semibold mb-2">{card.tag}</div>
+              <h3 className="text-[16px] font-semibold mb-3 text-text">{card.title}</h3>
+              <p className="text-[13px] text-text-secondary leading-[1.7]">{card.desc}</p>
             </div>
           ))}
         </div>
@@ -364,57 +361,34 @@ export default function HomePage() {
               Real ads. Every one scripted, edited, and quality-checked by our team.
             </p>
           </div>
-          <a href="#contact" className="shrink-0 text-sm text-primary font-medium hover:underline">
-            Get ads like these →
-          </a>
+          <a href="#contact" className="shrink-0 text-sm text-primary font-medium hover:underline">Get ads like these →</a>
         </div>
 
-        {/* Filter tabs */}
         <div className="flex gap-2 flex-wrap mb-8">
           {filterTabs.map((tab) => (
-            <button
-              key={tab}
-              onClick={() => setActiveFilter(tab)}
+            <button key={tab} onClick={() => setActiveFilter(tab)}
               className={`px-4 py-1.5 rounded-full text-[12px] font-medium border transition cursor-pointer ${
                 activeFilter === tab
-                  ? "bg-primary text-white border-primary shadow-[0_0_15px_rgba(224,92,42,0.4)]"
-                  : "bg-white/[0.04] text-text-secondary border-white/[0.08] hover:border-white/20"
-              }`}
-            >
+                  ? "bg-primary text-white border-primary shadow-[0_0_15px_rgba(224,92,42,0.3)]"
+                  : "bg-card text-text-secondary border-border hover:border-text-secondary"
+              }`}>
               {tab}
             </button>
           ))}
         </div>
 
-        {/* Ad cards */}
         <div className="flex flex-col gap-4">
           {filteredAds.filter(ad => ad.videoUrl).map((ad) => (
-            <div
-              key={ad.id}
-              className="relative w-full rounded-2xl overflow-hidden border border-white/[0.08]"
-              style={{ aspectRatio: "16/9" }}
-            >
-              <video
-                src={ad.videoUrl}
-                controls
-                playsInline
-                className="absolute inset-0 w-full h-full object-cover"
-              />
+            <div key={ad.id} className="relative w-full rounded-2xl overflow-hidden border border-border" style={{ aspectRatio: "16/9" }}>
+              <video src={ad.videoUrl} controls playsInline className="absolute inset-0 w-full h-full object-cover" />
               <div className="absolute top-3 left-3 z-10 pointer-events-none">
-                <div className="text-[8px] font-bold tracking-[1.5px] uppercase px-2 py-[3px] rounded-full text-white" style={{ background: ad.tagBg }}>
-                  {ad.tag}
-                </div>
+                <div className="text-[8px] font-bold tracking-[1.5px] uppercase px-2 py-[3px] rounded-full text-white" style={{ background: ad.tagBg }}>{ad.tag}</div>
               </div>
             </div>
           ))}
-
           <div className="flex gap-4 overflow-x-auto pb-2 snap-x snap-mandatory -mx-4 px-4 md:mx-0 md:px-0 md:grid md:grid-cols-2 md:overflow-visible">
             {filteredAds.filter(ad => !ad.videoUrl).map((ad) => (
-              <div
-                key={ad.id}
-                className="group relative shrink-0 w-[180px] md:w-auto snap-start rounded-2xl overflow-hidden cursor-pointer border border-white/[0.08]"
-                style={{ aspectRatio: "9/16" }}
-              >
+              <div key={ad.id} className="group relative shrink-0 w-[180px] md:w-auto snap-start rounded-2xl overflow-hidden cursor-pointer border border-border" style={{ aspectRatio: "9/16" }}>
                 <div className={`absolute inset-0 bg-gradient-to-b ${ad.bg}`} />
                 <div className="absolute top-0 left-0 right-0 p-3 flex items-center justify-between z-10">
                   <div className="text-[8px] font-bold tracking-[1.5px] uppercase px-2 py-[3px] rounded-full text-white" style={{ background: ad.tagBg }}>{ad.tag}</div>
@@ -422,7 +396,6 @@ export default function HomePage() {
                 </div>
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="w-16 h-16 rounded-full opacity-20 blur-2xl" style={{ background: ad.accent }} />
-                  <div className="absolute w-24 h-24 rounded-full opacity-10 blur-3xl" style={{ background: ad.accent }} />
                 </div>
                 <div className="absolute left-3 right-3 top-1/2 -translate-y-1/2 z-10">
                   <div className="bg-white/10 backdrop-blur-sm rounded-lg px-3 py-2 border border-white/10">
@@ -432,9 +405,8 @@ export default function HomePage() {
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 p-3 z-10">
                   <div className="w-full text-center text-[9px] font-bold py-2 rounded-lg text-white" style={{ background: ad.accent }}>{ad.cta}</div>
-                  <div className="text-[8px] text-white/30 text-center mt-1.5">{ad.industry}</div>
                 </div>
-                <div className="absolute inset-0 flex items-center justify-center z-20 opacity-0 group-hover:opacity-100 transition-opacity bg-black/40">
+                <div className="absolute inset-0 flex items-center justify-center z-20 opacity-0 group-hover:opacity-100 transition-opacity bg-black/30">
                   <div className="w-12 h-12 rounded-full bg-white/90 flex items-center justify-center shadow-xl">
                     <svg className="w-5 h-5 text-gray-900 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
                   </div>
@@ -443,10 +415,7 @@ export default function HomePage() {
             ))}
           </div>
         </div>
-
-        {filteredAds.length === 0 && (
-          <p className="text-text-tertiary text-sm text-center py-12">No samples in this category yet.</p>
-        )}
+        {filteredAds.length === 0 && <p className="text-text-tertiary text-sm text-center py-12">No samples in this category yet.</p>}
       </section>
 
       {/* ─── HOW IT WORKS ─── */}
@@ -460,11 +429,8 @@ export default function HomePage() {
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {steps.map((s) => (
-            <div key={s.n} className="p-6 rounded-2xl bg-white/[0.03] border border-white/[0.07] hover:border-primary/30 hover:bg-white/[0.05] transition">
-              <div className="font-[family-name:var(--font-bebas)] text-[52px] leading-none mb-4"
-                style={{ color: "rgba(224,92,42,0.25)" }}>
-                {s.n}
-              </div>
+            <div key={s.n} className="p-6 rounded-2xl bg-card border border-border hover:border-primary/40 transition">
+              <div className="font-[family-name:var(--font-bebas)] text-[52px] leading-none mb-4 text-border-secondary">{s.n}</div>
               <h3 className="text-[14px] font-semibold mb-2 text-text">{s.title}</h3>
               <p className="text-[12px] text-text-secondary leading-[1.65]">{s.desc}</p>
             </div>
@@ -473,7 +439,7 @@ export default function HomePage() {
       </section>
 
       {/* ─── 3 HUMAN CHECKPOINTS ─── */}
-      <div className="py-14 px-6 md:px-10 border-y border-white/[0.06]" style={{ background: "rgba(255,255,255,0.02)" }}>
+      <div className="py-14 px-6 md:px-10 border-y border-border bg-card">
         <div className="max-w-[1000px] mx-auto">
           <div className="flex flex-col md:flex-row md:items-center gap-8 md:gap-14">
             <div className="md:w-60 shrink-0">
@@ -485,9 +451,7 @@ export default function HomePage() {
             <div className="flex-1 grid grid-cols-1 sm:grid-cols-3 gap-6">
               {checkpoints.map((c) => (
                 <div key={c.label} className="flex gap-3 items-start">
-                  <div className="w-9 h-9 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-base shrink-0 mt-0.5">
-                    {c.icon}
-                  </div>
+                  <div className="w-9 h-9 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-base shrink-0 mt-0.5">{c.icon}</div>
                   <div>
                     <div className="text-[13px] font-semibold mb-1 text-text">{c.label}</div>
                     <div className="text-[12px] text-text-secondary leading-[1.65]">{c.desc}</div>
@@ -505,23 +469,15 @@ export default function HomePage() {
         <h2 className="font-[family-name:var(--font-bebas)] text-[clamp(36px,5vw,62px)] leading-none mb-3">
           One subscription.<br />Unlimited potential.
         </h2>
-        <p className="text-base text-text-secondary font-light mb-12 max-w-[480px]">
-          No lock-in. No setup fees. No hidden costs. Cancel anytime.
-        </p>
+        <p className="text-base text-text-secondary font-light mb-12 max-w-[480px]">No lock-in. No setup fees. No hidden costs. Cancel anytime.</p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {plans.map((plan) => (
-            <div
-              key={plan.tier}
-              className={`relative rounded-2xl p-7 transition ${
-                plan.hot
-                  ? "border border-primary/50 bg-white/[0.05]"
-                  : "border border-white/[0.07] bg-white/[0.03] hover:border-white/[0.15]"
-              }`}
-              style={plan.hot ? { boxShadow: "0 0 50px rgba(224,92,42,0.12), 0 0 0 1px rgba(224,92,42,0.15)" } : {}}
-            >
+            <div key={plan.tier}
+              className={`relative rounded-2xl p-7 transition ${plan.hot ? "border border-primary/60 bg-bg" : "border border-border bg-card hover:border-primary/30"}`}
+              style={plan.hot ? { boxShadow: "0 0 40px rgba(224,92,42,0.10)" } : {}}>
               {plan.hot && (
                 <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 text-white text-[10px] tracking-[1.5px] uppercase px-4 py-1 rounded-full whitespace-nowrap font-semibold"
-                  style={{ background: "linear-gradient(135deg, #E05C2A, #FF7040)", boxShadow: "0 0 20px rgba(224,92,42,0.5)" }}>
+                  style={{ background: "linear-gradient(135deg, #E05C2A, #FF7040)", boxShadow: "0 0 20px rgba(224,92,42,0.4)" }}>
                   Most popular
                 </div>
               )}
@@ -533,9 +489,9 @@ export default function HomePage() {
                 </span>
               </div>
               <div className="text-[11px] text-text-tertiary mb-0.5">per month · cancel anytime</div>
-              <div className="text-[11px] text-primary/70 mb-4">from ${plan.perAd}/ad</div>
+              <div className="text-[11px] text-primary/80 mb-4 font-medium">from ${plan.perAd}/ad</div>
               <div className="text-[12px] text-text-secondary mb-5">{plan.subtitle}</div>
-              <div className="h-px bg-white/[0.06] mb-5" />
+              <div className="h-px bg-border mb-5" />
               <ul className="space-y-0 mb-6">
                 {plan.features.map((f) => (
                   <li key={f} className="text-[12px] text-text-secondary py-[5px] flex items-start gap-2.5">
@@ -544,18 +500,9 @@ export default function HomePage() {
                   </li>
                 ))}
               </ul>
-              <a
-                href="#contact"
-                className={`block w-full py-3 rounded-xl text-[13px] font-semibold text-center cursor-pointer transition ${
-                  plan.hot
-                    ? "text-white"
-                    : "bg-white/[0.06] text-text border border-white/[0.1] hover:bg-white/[0.1]"
-                }`}
-                style={plan.hot ? {
-                  background: "linear-gradient(135deg, #E05C2A, #FF7040)",
-                  boxShadow: "0 0 25px rgba(224,92,42,0.35)"
-                } : {}}
-              >
+              <a href="#contact"
+                className={`block w-full py-3 rounded-xl text-[13px] font-semibold text-center cursor-pointer transition ${plan.hot ? "text-white" : "bg-bg text-text border border-border hover:border-text-secondary"}`}
+                style={plan.hot ? { background: "linear-gradient(135deg, #E05C2A, #FF7040)", boxShadow: "0 4px 20px rgba(224,92,42,0.3)" } : {}}>
                 {plan.cta}
               </a>
             </div>
@@ -567,7 +514,7 @@ export default function HomePage() {
       </section>
 
       {/* ─── WHO WE WORK WITH ─── */}
-      <div className="py-16 px-6 md:px-10 border-y border-white/[0.06]" style={{ background: "rgba(255,255,255,0.02)" }}>
+      <div className="py-16 px-6 md:px-10 border-y border-border bg-card">
         <div className="max-w-[1000px] mx-auto">
           <div className="text-[11px] tracking-[3px] uppercase text-primary mb-4 font-medium">Who we work with</div>
           <h2 className="font-[family-name:var(--font-bebas)] text-[clamp(30px,4vw,50px)] leading-none mb-8">
@@ -575,14 +522,11 @@ export default function HomePage() {
           </h2>
           <div className="flex flex-wrap gap-3">
             {chips.map((c) => (
-              <div
-                key={c.label}
-                className={`py-2 px-5 rounded-full text-[12px] font-medium border cursor-default transition ${
-                  c.fire
-                    ? "border-primary/50 text-primary bg-primary/[0.08] hover:bg-primary/[0.14]"
-                    : "border-white/[0.08] text-text-secondary bg-white/[0.03] hover:border-white/20"
-                }`}
-              >
+              <div key={c.label}
+                className={`py-2 px-5 rounded-full text-[12px] font-medium border cursor-default transition ${c.fire
+                  ? "border-primary/50 text-primary bg-primary/[0.06] hover:bg-primary/[0.1]"
+                  : "border-border text-text-secondary bg-bg hover:border-text-tertiary"
+                }`}>
                 {c.fire && "🔥 "}{c.label}
               </div>
             ))}
@@ -601,10 +545,8 @@ export default function HomePage() {
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {differCards.map((card) => (
-            <div key={card.title} className="p-6 border border-white/[0.07] rounded-2xl bg-white/[0.03] hover:border-primary/30 hover:bg-white/[0.05] transition">
-              <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-4 text-lg">
-                {card.icon}
-              </div>
+            <div key={card.title} className="p-6 border border-border rounded-2xl bg-card hover:border-primary/40 transition">
+              <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-4 text-lg">{card.icon}</div>
               <h3 className="text-[14px] font-semibold mb-2 text-text">{card.title}</h3>
               <p className="text-[13px] text-text-secondary leading-[1.65]">{card.desc}</p>
             </div>
@@ -613,7 +555,7 @@ export default function HomePage() {
       </section>
 
       {/* ─── TESTIMONIALS ─── */}
-      <div className="py-16 px-6 md:px-10 border-y border-white/[0.06]" style={{ background: "rgba(255,255,255,0.02)" }}>
+      <div className="py-16 px-6 md:px-10 border-y border-border bg-card">
         <div className="max-w-[1000px] mx-auto">
           <div className="text-[11px] tracking-[3px] uppercase text-primary mb-4 font-medium">Client results</div>
           <h2 className="font-[family-name:var(--font-bebas)] text-[clamp(30px,4vw,50px)] leading-none mb-10">
@@ -621,11 +563,11 @@ export default function HomePage() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {testimonials.map((t) => (
-              <div key={t.name} className="bg-white/[0.03] border border-white/[0.08] rounded-2xl p-6 flex flex-col gap-4 hover:border-white/20 transition">
+              <div key={t.name} className="bg-bg border border-border rounded-2xl p-6 flex flex-col gap-4 hover:border-primary/30 transition">
                 <div className="flex items-center justify-between">
                   <div className="flex gap-0.5">
                     {[...Array(5)].map((_, i) => (
-                      <svg key={i} className="w-3.5 h-3.5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                      <svg key={i} className="w-3.5 h-3.5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                       </svg>
                     ))}
@@ -651,18 +593,14 @@ export default function HomePage() {
         </h2>
         <div className="space-y-2">
           {faqs.map((faq, i) => (
-            <div key={faq.q} className="border border-white/[0.07] rounded-xl overflow-hidden">
-              <button
-                onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                className="w-full text-left px-5 py-4 flex items-center justify-between gap-4 hover:bg-white/[0.04] transition cursor-pointer"
-              >
+            <div key={faq.q} className="border border-border rounded-xl overflow-hidden bg-card">
+              <button onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                className="w-full text-left px-5 py-4 flex items-center justify-between gap-4 hover:bg-bg transition cursor-pointer">
                 <span className="text-[14px] font-medium text-text">{faq.q}</span>
                 <span className={`text-primary text-xl shrink-0 transition-transform duration-200 ${openFaq === i ? "rotate-45" : ""}`}>+</span>
               </button>
               {openFaq === i && (
-                <div className="px-5 pb-5 text-[13px] text-text-secondary leading-[1.8] border-t border-white/[0.06] pt-4">
-                  {faq.a}
-                </div>
+                <div className="px-5 pb-5 text-[13px] text-text-secondary leading-[1.8] border-t border-border pt-4">{faq.a}</div>
               )}
             </div>
           ))}
@@ -684,65 +622,41 @@ export default function HomePage() {
         </div>
 
         {formSubmitted ? (
-          <div className="border border-primary/30 rounded-2xl p-10 text-center bg-primary/[0.06]">
+          <div className="border border-primary/30 rounded-2xl p-10 text-center bg-primary/[0.04]">
             <div className="text-5xl mb-4">🔥</div>
             <h3 className="font-[family-name:var(--font-bebas)] text-3xl mb-2">You&apos;re in!</h3>
-            <p className="text-sm text-text-secondary">
-              Thanks for reaching out. A member of our team will be in touch within 4 business hours to talk through your first batch of ads.
-            </p>
+            <p className="text-sm text-text-secondary">Thanks for reaching out. A member of our team will be in touch within 4 business hours.</p>
           </div>
         ) : (
-          <form
-            action="https://formspree.io/f/xdapwbye"
-            method="POST"
+          <form action="https://formspree.io/f/xdapwbye" method="POST"
             onSubmit={(e) => {
               e.preventDefault();
               const form = e.currentTarget;
-              fetch(form.action, {
-                method: "POST",
-                body: new FormData(form),
-                headers: { Accept: "application/json" },
-              }).then((res) => {
-                if (res.ok) setFormSubmitted(true);
-              });
+              fetch(form.action, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } })
+                .then((res) => { if (res.ok) setFormSubmitted(true); });
             }}
-            className="space-y-3"
-          >
+            className="space-y-3">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <input name="name" type="text" required placeholder="Full name"
-                className="w-full bg-white/[0.05] border border-white/[0.1] rounded-xl px-4 py-3 text-sm text-text placeholder-text-tertiary focus:outline-none focus:border-primary transition" />
-              <input name="email" type="email" required placeholder="Email address"
-                className="w-full bg-white/[0.05] border border-white/[0.1] rounded-xl px-4 py-3 text-sm text-text placeholder-text-tertiary focus:outline-none focus:border-primary transition" />
+              <input name="name" type="text" required placeholder="Full name" className="w-full bg-bg border border-border rounded-xl px-4 py-3 text-sm text-text placeholder-text-tertiary focus:outline-none focus:border-primary transition" />
+              <input name="email" type="email" required placeholder="Email address" className="w-full bg-bg border border-border rounded-xl px-4 py-3 text-sm text-text placeholder-text-tertiary focus:outline-none focus:border-primary transition" />
             </div>
-            <input name="business" type="text" required placeholder="Business name"
-              className="w-full bg-white/[0.05] border border-white/[0.1] rounded-xl px-4 py-3 text-sm text-text placeholder-text-tertiary focus:outline-none focus:border-primary transition" />
-            <select name="plan"
-              className="w-full bg-white/[0.05] border border-white/[0.1] rounded-xl px-4 py-3 text-sm text-text focus:outline-none focus:border-primary transition appearance-none"
-              style={{ colorScheme: "dark" }}>
+            <input name="business" type="text" required placeholder="Business name" className="w-full bg-bg border border-border rounded-xl px-4 py-3 text-sm text-text placeholder-text-tertiary focus:outline-none focus:border-primary transition" />
+            <select name="plan" className="w-full bg-bg border border-border rounded-xl px-4 py-3 text-sm text-text focus:outline-none focus:border-primary transition">
               <option value="starter">Starter — 2 ads · $590/mo</option>
               <option value="growth">Growth — 4 ads · $997/mo</option>
               <option value="brand">Brand — 8 ads · $2,050/mo</option>
               <option value="unsure">Not sure yet</option>
             </select>
-            <select name="footage"
-              className="w-full bg-white/[0.05] border border-white/[0.1] rounded-xl px-4 py-3 text-sm text-text focus:outline-none focus:border-primary transition appearance-none"
-              style={{ colorScheme: "dark" }}>
+            <select name="footage" className="w-full bg-bg border border-border rounded-xl px-4 py-3 text-sm text-text focus:outline-none focus:border-primary transition">
               <option value="have-footage">I have footage / assets to send</option>
               <option value="no-footage">I don&apos;t have footage — build from scratch</option>
               <option value="mix">I have some stuff, you fill the gaps</option>
               <option value="unsure">Not sure yet</option>
             </select>
-            <textarea name="message" rows={4}
-              placeholder="Tell us about your business — what you sell, who your customers are, and what kind of ads you're after"
-              className="w-full bg-white/[0.05] border border-white/[0.1] rounded-xl px-4 py-3 text-sm text-text placeholder-text-tertiary focus:outline-none focus:border-primary transition resize-none" />
-            <button
-              type="submit"
-              className="w-full text-white rounded-xl py-4 text-[15px] font-semibold cursor-pointer transition"
-              style={{
-                background: "linear-gradient(135deg, #E05C2A 0%, #FF7040 100%)",
-                boxShadow: "0 0 40px rgba(224,92,42,0.35)"
-              }}
-            >
+            <textarea name="message" rows={4} placeholder="Tell us about your business — what you sell, who your customers are, and what kind of ads you're after"
+              className="w-full bg-bg border border-border rounded-xl px-4 py-3 text-sm text-text placeholder-text-tertiary focus:outline-none focus:border-primary transition resize-none" />
+            <button type="submit" className="w-full text-white rounded-xl py-4 text-[15px] font-semibold cursor-pointer transition"
+              style={{ background: "linear-gradient(135deg, #E05C2A 0%, #FF7040 100%)", boxShadow: "0 4px 30px rgba(224,92,42,0.3)" }}>
               Get my first ads →
             </button>
           </form>
@@ -750,9 +664,9 @@ export default function HomePage() {
       </section>
 
       {/* ─── CTA BANNER ─── */}
-      <div className="relative text-center py-24 px-6 md:px-10 border-t border-white/[0.06] overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] pointer-events-none"
-          style={{ background: "radial-gradient(ellipse, rgba(224,92,42,0.10) 0%, transparent 70%)" }} />
+      <div className="relative text-center py-24 px-6 md:px-10 border-t border-border overflow-hidden bg-card">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[400px] pointer-events-none"
+          style={{ background: "radial-gradient(ellipse, rgba(224,92,42,0.07) 0%, transparent 70%)" }} />
         <div className="relative">
           <h2 className="font-[family-name:var(--font-bebas)] text-[clamp(40px,7vw,82px)] leading-[0.9] mb-5">
             Your competitors are<br />already running{" "}
@@ -763,24 +677,16 @@ export default function HomePage() {
           <p className="text-base text-text-secondary mb-4 font-light max-w-lg mx-auto">
             The businesses winning on social aren&apos;t spending $10k on production crews. They&apos;re using FireReel.
           </p>
-          <p className="text-[13px] text-text-tertiary mb-10">
-            Not happy with your first batch? A real human will personally rework it — guaranteed.
-          </p>
-          <a
-            href="#contact"
-            className="inline-block text-white rounded-xl px-10 py-4 text-base font-semibold transition"
-            style={{
-              background: "linear-gradient(135deg, #E05C2A 0%, #FF7040 100%)",
-              boxShadow: "0 0 50px rgba(224,92,42,0.45)"
-            }}
-          >
+          <p className="text-[13px] text-text-tertiary mb-10">Not happy with your first batch? A real human will personally rework it — guaranteed.</p>
+          <a href="#contact" className="inline-block text-white rounded-xl px-10 py-4 text-base font-semibold transition"
+            style={{ background: "linear-gradient(135deg, #E05C2A 0%, #FF7040 100%)", boxShadow: "0 4px 40px rgba(224,92,42,0.35)" }}>
             Start your first month →
           </a>
         </div>
       </div>
 
       {/* ─── FOOTER ─── */}
-      <footer className="px-6 md:px-10 py-6 border-t border-white/[0.06] flex justify-between items-center flex-wrap gap-2">
+      <footer className="px-6 md:px-10 py-6 border-t border-border flex justify-between items-center flex-wrap gap-2">
         <span className="text-xs text-text-tertiary">© 2026 FireReel · firereel.net</span>
         <span className="text-xs text-text-tertiary">AI production. Human standards. · Born in Adelaide, serving the world</span>
       </footer>
