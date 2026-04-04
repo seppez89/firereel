@@ -148,7 +148,7 @@ const adPreviews = [
     accent: "#4A90D9",
     tag: "JUST LISTED",
     tagBg: "#E05C2A",
-    videoUrl: "https://pub-4ef325eb18e2417496a343f696ab87f1.r2.dev/lockleysfirereel",
+    videoUrl: "https://pub-4ef325eb18e2417496a343f696ab87f1.r2.dev/firereel/lockleysfirereel.mp4",
   },
   {
     id: 2,
