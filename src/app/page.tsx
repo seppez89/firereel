@@ -193,14 +193,7 @@ export default function HomePage() {
       {/* ─── NAV ─── */}
       <nav className="flex items-center justify-between px-8 py-5 border-b border-border">
         <div className="flex items-center gap-2 font-[family-name:var(--font-bebas)] text-2xl tracking-[3px]">
-          <svg className="w-5 h-6" viewBox="0 0 20 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M10 2C10 2 14 7 14 11C14 11 16 9 15 6C15 6 19 10 19 15C19 20.5 14.97 24 10 24C5.03 24 1 20.5 1 15C1 10 5 6 7 4C7 4 6.5 8 8 10C8 10 8 5 10 2Z" fill="#E05C2A" />
-            <path d="M10 14C10 14 12 16 12 18C12 19.1 11.1 20 10 20C8.9 20 8 19.1 8 18C8 16 10 14 10 14Z" fill="#FF8C5A" />
-          </svg>
-          <span>
-            <span className="text-primary">FIRE</span>
-            <span className="text-text">REEL</span>
-          </span>
+          <img src="/logo.png" alt="FireReel" className="h-20 w-auto -my-6 object-cover" />
         </div>
         <div className="hidden md:flex items-center gap-8">
           <a href="#how-it-works" className="text-sm text-text-secondary cursor-pointer hover:text-text transition">How it works</a>
