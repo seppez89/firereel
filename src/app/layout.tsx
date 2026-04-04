@@ -16,9 +16,9 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "FireReel — AI Video Ad Agency for Australian Businesses",
+  title: "FireReel — AI Video Ad Agency | Premium Video Ads on Subscription",
   description:
-    "Scroll-stopping, cinematically edited video ads delivered to your inbox every month. No agency fees. No filming. No back-and-forth.",
+    "Scroll-stopping, cinematically edited video ads delivered to your inbox every month. AI speed, human quality. No agency fees. No filming. No back-and-forth.",
 };
 
 export default function RootLayout({
