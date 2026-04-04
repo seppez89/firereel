@@ -21,6 +21,7 @@ const plans = [
   {
     tier: "Starter",
     price: "590",
+    perAd: "295",
     subtitle: "For businesses ready to start showing up",
     features: [
       "2 premium video ads per month",
@@ -36,6 +37,7 @@ const plans = [
   {
     tier: "Growth",
     price: "997",
+    perAd: "249",
     hot: true,
     subtitle: "For brands that need to be everywhere",
     features: [
@@ -53,6 +55,7 @@ const plans = [
   {
     tier: "Brand",
     price: "2,050",
+    perAd: "256",
     subtitle: "For serious brands that want to dominate",
     features: [
       "8 premium video ads per month",
@@ -94,16 +97,19 @@ const testimonials = [
     quote: "I sent them shaky phone footage from a property walkthrough. What came back looked like it cost $5,000 to produce. Our engagement tripled in the first month.",
     name: "Sarah M.",
     business: "E-commerce, Melbourne AU",
+    metric: "3× engagement",
   },
   {
     quote: "We had zero footage, zero assets, zero idea what we wanted. They handled everything. Six ads landed in our portal on day three and every single one was usable.",
     name: "James T.",
     business: "Real Estate Agency, London UK",
+    metric: "0 assets needed",
   },
   {
     quote: "The difference between FireReel and the AI tools I tried myself? These ads actually look like a human made them. Because one did.",
     name: "Priya K.",
     business: "Health & Fitness, Toronto CA",
+    metric: "Premium quality",
   },
 ];
 
@@ -134,7 +140,7 @@ const faqs = [
   },
 ];
 
-const clientTypes = ["Real Estate", "E-Commerce", "Health & Fitness", "Hospitality", "SaaS", "Trades"];
+const clientTypes = ["Real Estate", "E-Commerce", "Health & Fitness", "Hospitality", "SaaS", "Trades", "Coaches", "Property", "Retail", "Finance"];
 
 const adPreviews = [
   {
@@ -183,128 +189,179 @@ const filterTabs = ["All", "Real Estate", "E-Commerce", "Health & Fitness"];
 export default function HomePage() {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [activeFilter, setActiveFilter] = useState("All");
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const filteredAds = activeFilter === "All"
     ? adPreviews
     : adPreviews.filter((a) => a.industry === activeFilter);
 
   return (
-    <div className="text-text">
+    <div className="text-text bg-bg min-h-screen">
+
       {/* ─── NAV ─── */}
-      <nav className="flex items-center justify-between px-8 py-5 border-b border-border">
-        <div className="flex items-center gap-2 font-[family-name:var(--font-bebas)] text-2xl tracking-[3px]">
-          <img src="/logo.png" alt="FireReel" className="h-20 w-auto -my-6 object-cover" />
-        </div>
+      <nav className="sticky top-0 z-50 flex items-center justify-between px-6 md:px-10 py-4 border-b border-white/[0.06] bg-[#080808]/90 backdrop-blur-xl">
+        <a href="/" className="flex items-center">
+          <img src="/logo.png" alt="FireReel" className="h-10 w-auto" />
+        </a>
         <div className="hidden md:flex items-center gap-8">
-          <a href="#how-it-works" className="text-sm text-text-secondary cursor-pointer hover:text-text transition">How it works</a>
-          <a href="#pricing" className="text-sm text-text-secondary cursor-pointer hover:text-text transition">Pricing</a>
+          <a href="#how-it-works" className="text-sm text-text-secondary hover:text-text transition">How it works</a>
+          <a href="#pricing" className="text-sm text-text-secondary hover:text-text transition">Pricing</a>
+          <a href="#work" className="text-sm text-text-secondary hover:text-text transition">Our work</a>
           <a
-            href="#work"
-            className="bg-primary text-white border-none rounded-md px-[22px] py-[9px] text-sm font-medium cursor-pointer hover:brightness-110 transition"
+            href="#contact"
+            className="bg-primary text-white rounded-lg px-5 py-2.5 text-sm font-semibold hover:bg-primary-light transition shadow-[0_0_20px_rgba(224,92,42,0.4)]"
           >
-            See our work ↗
+            Get started →
           </a>
         </div>
+        {/* Mobile CTA */}
+        <a href="#contact" className="md:hidden bg-primary text-white rounded-lg px-4 py-2 text-sm font-semibold">
+          Start →
+        </a>
       </nav>
 
       {/* ─── HERO ─── */}
-      <section className="pt-20 pb-14 px-8 max-w-[860px] mx-auto text-center">
-        <div className="inline-flex items-center gap-2 text-xs tracking-[2.5px] uppercase text-text-tertiary mb-8">
-          <span className="w-1.5 h-1.5 rounded-full bg-primary inline-block animate-[pulse_2s_infinite]" />
-          AI-powered production · Human-crafted quality
-        </div>
-        <h1 className="font-[family-name:var(--font-bebas)] text-[clamp(52px,10vw,96px)] leading-[0.92] tracking-[1px] mb-7">
-          Video ads that<br />
-          <span className="text-primary">look</span>{" "}
-          <span className="text-text-secondary">expensive.</span>
-        </h1>
-        <p className="text-[17px] text-text-secondary leading-[1.75] max-w-[540px] mx-auto mb-4 font-light">
-          We combine <strong className="text-text font-medium">AI speed with human creative direction</strong> to produce video ads that actually convert — delivered monthly, on subscription. Send us your footage or don&apos;t. We make it work either way.
-        </p>
-        <p className="text-[14px] text-text-tertiary mb-10 font-light">
-          Every ad is scripted, edited, and quality-checked by real humans before it reaches you.
-        </p>
-        <div className="flex gap-3 justify-center flex-wrap mb-12">
-          <a
-            href="#contact"
-            className="bg-primary text-white border-none rounded-lg px-[30px] py-[14px] text-[15px] font-medium cursor-pointer hover:brightness-110 transition"
-          >
-            Get your first ads →
-          </a>
-          <a
-            href="#work"
-            className="bg-transparent text-text border border-border rounded-lg px-[30px] py-[14px] text-[15px] font-normal cursor-pointer hover:border-text-secondary transition"
-          >
-            See examples
-          </a>
+      <section className="relative pt-20 pb-16 px-6 md:px-10 max-w-[920px] mx-auto text-center overflow-hidden">
+        {/* Ambient glow */}
+        <div className="absolute top-[-100px] left-1/2 -translate-x-1/2 w-[700px] h-[500px] rounded-full pointer-events-none"
+          style={{ background: "radial-gradient(ellipse, rgba(224,92,42,0.12) 0%, transparent 70%)" }}
+        />
+
+        <div className="relative">
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 text-[11px] tracking-[2px] uppercase text-text-secondary mb-8 border border-white/10 rounded-full px-4 py-2 bg-white/[0.04]">
+            <span className="w-1.5 h-1.5 rounded-full bg-primary inline-block animate-[pulse_2s_infinite]" />
+            AI speed · Human quality · Delivered globally
+          </div>
+
+          {/* H1 */}
+          <h1 className="font-[family-name:var(--font-bebas)] text-[clamp(58px,11vw,112px)] leading-[0.88] tracking-[0.5px] mb-7">
+            Video ads that<br />
+            actually{" "}
+            <span style={{ background: "linear-gradient(135deg, #E05C2A 0%, #FF8C5A 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+              convert.
+            </span>
+          </h1>
+
+          <p className="text-[17px] text-text-secondary leading-[1.8] max-w-[560px] mx-auto mb-3 font-light">
+            We combine <strong className="text-text font-medium">AI production speed</strong> with{" "}
+            <strong className="text-text font-medium">human creative direction</strong> to deliver scroll-stopping video ads every month — on subscription.
+          </p>
+          <p className="text-[13px] text-text-tertiary mb-10 font-light">
+            Send us footage. Or don&apos;t. We make stunning ads either way.
+          </p>
+
+          {/* CTAs */}
+          <div className="flex gap-3 justify-center flex-wrap mb-14">
+            <a
+              href="#contact"
+              className="text-white rounded-xl px-9 py-4 text-[15px] font-semibold transition"
+              style={{
+                background: "linear-gradient(135deg, #E05C2A 0%, #FF7040 100%)",
+                boxShadow: "0 0 40px rgba(224,92,42,0.4), 0 4px 20px rgba(224,92,42,0.2)"
+              }}
+            >
+              Get your first ads →
+            </a>
+            <a
+              href="#work"
+              className="bg-white/[0.06] text-text border border-white/[0.12] rounded-xl px-9 py-4 text-[15px] font-normal hover:bg-white/[0.1] transition"
+            >
+              See examples
+            </a>
+          </div>
+
+          {/* Social proof */}
+          <div className="flex items-center justify-center gap-6 flex-wrap">
+            <div className="flex items-center gap-1.5">
+              {[...Array(5)].map((_, i) => (
+                <svg key={i} className="w-3.5 h-3.5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+              ))}
+              <span className="text-[12px] text-text-secondary ml-1.5">4.9 / 5 from clients</span>
+            </div>
+            <span className="text-white/15 hidden sm:block">|</span>
+            <span className="text-[12px] text-text-secondary">200+ brands served</span>
+            <span className="text-white/15 hidden sm:block">|</span>
+            <span className="text-[12px] text-text-secondary">$2M+ in ad spend managed</span>
+          </div>
         </div>
       </section>
 
-      {/* ─── STATS BAR ─── */}
-      <div className="border-t border-b border-border py-7 px-8 flex justify-center gap-[clamp(1.5rem,4vw,4rem)] flex-wrap">
-        {[
-          { num: "3 days", label: "average delivery" },
-          { num: "100%", label: "human-reviewed" },
-          { num: "10×", label: "cheaper than an agency" },
-          { num: "$0", label: "setup fee, ever" },
-        ].map((s) => (
-          <div key={s.label} className="text-center">
-            <span className="font-[family-name:var(--font-bebas)] text-[38px] text-primary leading-none block">
-              {s.num}
+      {/* ─── MARQUEE ─── */}
+      <div className="border-y border-white/[0.06] py-4 overflow-hidden bg-white/[0.02]">
+        <div className="marquee-track">
+          {[...clientTypes, ...clientTypes, ...clientTypes, ...clientTypes].map((t, i) => (
+            <span key={i} className="text-[11px] text-text-tertiary font-medium uppercase tracking-[2.5px] shrink-0 px-6">
+              {t} <span className="text-primary">✦</span>
             </span>
-            <div className="text-xs text-text-tertiary mt-[3px] tracking-[0.5px]">{s.label}</div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
 
-      {/* ─── CLIENT LOGO STRIP ─── */}
-      <div className="py-6 px-8 border-b border-border">
-        <p className="text-center text-[11px] tracking-[2px] uppercase text-text-tertiary mb-4">Trusted by businesses in</p>
-        <div className="flex flex-wrap justify-center gap-x-8 gap-y-2">
-          {clientTypes.map((t) => (
-            <span key={t} className="text-[13px] text-text-secondary font-medium">{t}</span>
+      {/* ─── STATS ─── */}
+      <div className="py-14 px-6 md:px-10">
+        <div className="max-w-[900px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
+          {[
+            { num: "3", suffix: " days", label: "average delivery" },
+            { num: "100%", suffix: "", label: "human-reviewed" },
+            { num: "10×", suffix: "", label: "cheaper than an agency" },
+            { num: "$0", suffix: "", label: "setup fee, ever" },
+          ].map((s) => (
+            <div
+              key={s.label}
+              className="text-center p-6 rounded-2xl border border-white/[0.07] bg-white/[0.03] hover:border-primary/30 transition"
+            >
+              <div className="font-[family-name:var(--font-bebas)] leading-none mb-2"
+                style={{ fontSize: "clamp(36px,5vw,52px)", background: "linear-gradient(135deg, #E05C2A, #FF8C5A)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+                {s.num}{s.suffix}
+              </div>
+              <div className="text-[11px] text-text-tertiary tracking-[0.5px]">{s.label}</div>
+            </div>
           ))}
         </div>
       </div>
 
       {/* ─── YOUR FOOTAGE OR OURS ─── */}
-      <section className="py-[4.5rem] px-8 max-w-[920px] mx-auto">
+      <section className="py-16 px-6 md:px-10 max-w-[1000px] mx-auto">
         <div className="text-[11px] tracking-[3px] uppercase text-primary mb-4 font-medium">Flexible by design</div>
-        <h2 className="font-[family-name:var(--font-bebas)] text-[clamp(34px,5vw,56px)] leading-none mb-2">
+        <h2 className="font-[family-name:var(--font-bebas)] text-[clamp(36px,5vw,62px)] leading-none mb-3">
           Your footage.<br />Or ours. Or both.
         </h2>
-        <p className="text-base text-text-secondary font-light mb-10 max-w-[540px]">
-          Some clients send us raw clips from their iPhone. Others send nothing at all. Either way, we produce ads that look like serious money was spent on them.
+        <p className="text-base text-text-secondary font-light mb-10 max-w-[520px]">
+          Some clients send us raw iPhone clips. Others send us nothing at all. Either way, we produce ads that look like serious money was spent on them.
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <div className="border border-border rounded-xl p-6 bg-bg">
-            <div className="text-2xl mb-3">📱</div>
-            <h3 className="text-sm font-medium mb-2">You have footage</h3>
-            <p className="text-[13px] text-text-secondary leading-[1.6]">Send us whatever you&apos;ve got — phone clips, drone shots, product videos. We&apos;ll transform them into scroll-stopping ads with pro editing, captions, music, and voiceover.</p>
-          </div>
-          <div className="border border-primary rounded-xl p-6 bg-bg">
-            <div className="text-2xl mb-3">🔥</div>
-            <h3 className="text-sm font-medium mb-2">You have nothing</h3>
-            <p className="text-[13px] text-text-secondary leading-[1.6]">No footage? No problem. We&apos;ll source premium stock, use AI-generated visuals, and produce everything from scratch. You won&apos;t be able to tell the difference.</p>
-          </div>
-          <div className="border border-border rounded-xl p-6 bg-bg">
-            <div className="text-2xl mb-3">🤝</div>
-            <h3 className="text-sm font-medium mb-2">Mix and match</h3>
-            <p className="text-[13px] text-text-secondary leading-[1.6]">The best results often come from a blend — your authentic brand footage combined with our AI production, cinematic editing, and professional polish.</p>
-          </div>
+          {[
+            { icon: "📱", title: "You have footage", desc: "Send us whatever you've got — phone clips, drone shots, product videos. We'll transform them into scroll-stopping ads with pro editing, captions, music, and voiceover.", highlight: false },
+            { icon: "🔥", title: "You have nothing", desc: "No footage? No problem. We'll source premium stock, use AI-generated visuals, and produce everything from scratch. You won't be able to tell the difference.", highlight: true },
+            { icon: "🤝", title: "Mix and match", desc: "The best results come from a blend — your authentic brand footage combined with our AI production, cinematic editing, and professional polish.", highlight: false },
+          ].map((card) => (
+            <div key={card.title}
+              className={`rounded-2xl p-6 border transition ${card.highlight
+                ? "border-primary/40 bg-primary/[0.06] hover:bg-primary/[0.09]"
+                : "border-white/[0.07] bg-white/[0.03] hover:border-white/20 hover:bg-white/[0.05]"
+              }`}
+            >
+              <div className="text-2xl mb-4">{card.icon}</div>
+              <h3 className="text-[14px] font-semibold mb-2 text-text">{card.title}</h3>
+              <p className="text-[13px] text-text-secondary leading-[1.65]">{card.desc}</p>
+            </div>
+          ))}
         </div>
       </section>
 
       {/* ─── AD PREVIEW ─── */}
-      <section id="work" className="pb-[4.5rem] px-8 max-w-[1200px] mx-auto">
+      <section id="work" className="py-16 px-6 md:px-10 max-w-[1200px] mx-auto">
         <div className="text-[11px] tracking-[3px] uppercase text-primary mb-4 font-medium">Our work</div>
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
           <div>
-            <h2 className="font-[family-name:var(--font-bebas)] text-[clamp(34px,5vw,56px)] leading-none mb-2">
+            <h2 className="font-[family-name:var(--font-bebas)] text-[clamp(36px,5vw,62px)] leading-none mb-2">
               See what we produce.
             </h2>
             <p className="text-base text-text-secondary font-light max-w-[420px]">
-              Real ads. Real results. Every one of these was scripted, edited, and quality-checked by our team.
+              Real ads. Every one scripted, edited, and quality-checked by our team.
             </p>
           </div>
           <a href="#contact" className="shrink-0 text-sm text-primary font-medium hover:underline">
@@ -320,8 +377,8 @@ export default function HomePage() {
               onClick={() => setActiveFilter(tab)}
               className={`px-4 py-1.5 rounded-full text-[12px] font-medium border transition cursor-pointer ${
                 activeFilter === tab
-                  ? "bg-primary text-white border-primary"
-                  : "bg-transparent text-text-secondary border-border hover:border-text-secondary"
+                  ? "bg-primary text-white border-primary shadow-[0_0_15px_rgba(224,92,42,0.4)]"
+                  : "bg-white/[0.04] text-text-secondary border-white/[0.08] hover:border-white/20"
               }`}
             >
               {tab}
@@ -334,7 +391,7 @@ export default function HomePage() {
           {filteredAds.filter(ad => ad.videoUrl).map((ad) => (
             <div
               key={ad.id}
-              className="group relative w-full rounded-2xl overflow-hidden"
+              className="relative w-full rounded-2xl overflow-hidden border border-white/[0.08]"
               style={{ aspectRatio: "16/9" }}
             >
               <video
@@ -344,10 +401,7 @@ export default function HomePage() {
                 className="absolute inset-0 w-full h-full object-cover"
               />
               <div className="absolute top-3 left-3 z-10 pointer-events-none">
-                <div
-                  className="text-[8px] font-bold tracking-[1.5px] uppercase px-2 py-[3px] rounded-full text-white"
-                  style={{ background: ad.tagBg }}
-                >
+                <div className="text-[8px] font-bold tracking-[1.5px] uppercase px-2 py-[3px] rounded-full text-white" style={{ background: ad.tagBg }}>
                   {ad.tag}
                 </div>
               </div>
@@ -355,15 +409,13 @@ export default function HomePage() {
           ))}
 
           <div className="flex gap-4 overflow-x-auto pb-2 snap-x snap-mandatory -mx-4 px-4 md:mx-0 md:px-0 md:grid md:grid-cols-2 md:overflow-visible">
-          {filteredAds.filter(ad => !ad.videoUrl).map((ad) => (
-            <div
-              key={ad.id}
-              className="group relative shrink-0 w-[180px] md:w-auto snap-start rounded-2xl overflow-hidden cursor-pointer"
-              style={{ aspectRatio: "9/16" }}
-            >
-              <>
+            {filteredAds.filter(ad => !ad.videoUrl).map((ad) => (
+              <div
+                key={ad.id}
+                className="group relative shrink-0 w-[180px] md:w-auto snap-start rounded-2xl overflow-hidden cursor-pointer border border-white/[0.08]"
+                style={{ aspectRatio: "9/16" }}
+              >
                 <div className={`absolute inset-0 bg-gradient-to-b ${ad.bg}`} />
-                <div className="absolute inset-0 opacity-[0.03] bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjc1IiBzdGl0Y2hUaWxlcz0ic3RpdGNoIi8+PC9maWx0ZXI+PHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSIzMDAiIGZpbHRlcj0idXJsKCNhKSIvPjwvc3ZnPg==')]" />
                 <div className="absolute top-0 left-0 right-0 p-3 flex items-center justify-between z-10">
                   <div className="text-[8px] font-bold tracking-[1.5px] uppercase px-2 py-[3px] rounded-full text-white" style={{ background: ad.tagBg }}>{ad.tag}</div>
                   <div className="text-[9px] text-white/50 font-medium">{ad.format}</div>
@@ -382,15 +434,13 @@ export default function HomePage() {
                   <div className="w-full text-center text-[9px] font-bold py-2 rounded-lg text-white" style={{ background: ad.accent }}>{ad.cta}</div>
                   <div className="text-[8px] text-white/30 text-center mt-1.5">{ad.industry}</div>
                 </div>
-                <div className="absolute inset-0 flex items-center justify-center z-20 opacity-0 group-hover:opacity-100 transition-opacity bg-black/30">
+                <div className="absolute inset-0 flex items-center justify-center z-20 opacity-0 group-hover:opacity-100 transition-opacity bg-black/40">
                   <div className="w-12 h-12 rounded-full bg-white/90 flex items-center justify-center shadow-xl">
                     <svg className="w-5 h-5 text-gray-900 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
                   </div>
                 </div>
-                <div className="absolute inset-0 ring-2 ring-transparent group-hover:ring-white/20 rounded-2xl transition-all group-hover:scale-[1.01] pointer-events-none" />
-              </>
-            </div>
-          ))}
+              </div>
+            ))}
           </div>
         </div>
 
@@ -400,47 +450,47 @@ export default function HomePage() {
       </section>
 
       {/* ─── HOW IT WORKS ─── */}
-      <section id="how-it-works" className="py-[4.5rem] px-8 max-w-[920px] mx-auto">
+      <section id="how-it-works" className="py-16 px-6 md:px-10 max-w-[1000px] mx-auto">
         <div className="text-[11px] tracking-[3px] uppercase text-primary mb-4 font-medium">How it works</div>
-        <h2 className="font-[family-name:var(--font-bebas)] text-[clamp(34px,5vw,56px)] leading-none mb-2">
+        <h2 className="font-[family-name:var(--font-bebas)] text-[clamp(36px,5vw,62px)] leading-none mb-3">
           You brief us once.<br />We deliver every month.
         </h2>
         <p className="text-base text-text-secondary font-light mb-10 max-w-[480px]">
-          Four steps. No meetings. No back-and-forth. Just ads that show up in your portal, ready to post.
+          Four steps. No meetings. No back-and-forth. Just ads in your portal, ready to post.
         </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border border-border rounded-xl overflow-hidden">
-          {steps.map((s, i) => (
-            <div
-              key={s.n}
-              className={`p-8 pr-6 bg-bg ${i < steps.length - 1 ? "border-b lg:border-b-0 lg:border-r" : ""} border-border`}
-            >
-              <div className="font-[family-name:var(--font-bebas)] text-5xl leading-none text-border-secondary mb-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {steps.map((s) => (
+            <div key={s.n} className="p-6 rounded-2xl bg-white/[0.03] border border-white/[0.07] hover:border-primary/30 hover:bg-white/[0.05] transition">
+              <div className="font-[family-name:var(--font-bebas)] text-[52px] leading-none mb-4"
+                style={{ color: "rgba(224,92,42,0.25)" }}>
                 {s.n}
               </div>
-              <h3 className="text-[15px] font-medium mb-1.5">{s.title}</h3>
-              <p className="text-[13px] text-text-secondary leading-[1.65]">{s.desc}</p>
+              <h3 className="text-[14px] font-semibold mb-2 text-text">{s.title}</h3>
+              <p className="text-[12px] text-text-secondary leading-[1.65]">{s.desc}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* ─── 3 HUMAN CHECKPOINTS ─── */}
-      <div className="bg-card py-12 px-8 border-y border-border">
-        <div className="max-w-[920px] mx-auto">
-          <div className="flex flex-col md:flex-row md:items-center gap-6 md:gap-10">
-            <div className="md:w-64 shrink-0">
-              <div className="text-[11px] tracking-[3px] uppercase text-primary mb-2 font-medium">Human quality guarantee</div>
-              <h3 className="font-[family-name:var(--font-bebas)] text-[clamp(26px,3vw,38px)] leading-none">
+      <div className="py-14 px-6 md:px-10 border-y border-white/[0.06]" style={{ background: "rgba(255,255,255,0.02)" }}>
+        <div className="max-w-[1000px] mx-auto">
+          <div className="flex flex-col md:flex-row md:items-center gap-8 md:gap-14">
+            <div className="md:w-60 shrink-0">
+              <div className="text-[11px] tracking-[3px] uppercase text-primary mb-3 font-medium">Human guarantee</div>
+              <h3 className="font-[family-name:var(--font-bebas)] text-[clamp(28px,3vw,42px)] leading-none">
                 Every ad passes 3 human checkpoints.
               </h3>
             </div>
-            <div className="flex-1 grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div className="flex-1 grid grid-cols-1 sm:grid-cols-3 gap-6">
               {checkpoints.map((c) => (
                 <div key={c.label} className="flex gap-3 items-start">
-                  <span className="text-xl mt-0.5">{c.icon}</span>
+                  <div className="w-9 h-9 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-base shrink-0 mt-0.5">
+                    {c.icon}
+                  </div>
                   <div>
-                    <div className="text-[13px] font-medium mb-1">{c.label}</div>
-                    <div className="text-[12px] text-text-secondary leading-[1.6]">{c.desc}</div>
+                    <div className="text-[13px] font-semibold mb-1 text-text">{c.label}</div>
+                    <div className="text-[12px] text-text-secondary leading-[1.65]">{c.desc}</div>
                   </div>
                 </div>
               ))}
@@ -450,74 +500,90 @@ export default function HomePage() {
       </div>
 
       {/* ─── PRICING ─── */}
-      <section id="pricing" className="py-[4.5rem] px-8 max-w-[920px] mx-auto">
+      <section id="pricing" className="py-20 px-6 md:px-10 max-w-[1000px] mx-auto">
         <div className="text-[11px] tracking-[3px] uppercase text-primary mb-4 font-medium">Pricing</div>
-        <h2 className="font-[family-name:var(--font-bebas)] text-[clamp(34px,5vw,56px)] leading-none mb-2">
+        <h2 className="font-[family-name:var(--font-bebas)] text-[clamp(36px,5vw,62px)] leading-none mb-3">
           One subscription.<br />Unlimited potential.
         </h2>
-        <p className="text-base text-text-secondary font-light mb-10 max-w-[480px]">
-          No lock-in contracts. No setup fees. No hidden costs. Just video ads that work, delivered every month. Cancel anytime.
+        <p className="text-base text-text-secondary font-light mb-12 max-w-[480px]">
+          No lock-in. No setup fees. No hidden costs. Cancel anytime.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {plans.map((plan) => (
             <div
               key={plan.tier}
-              className={`border rounded-xl p-7 bg-bg relative ${
-                plan.hot ? "border-[1.5px] border-primary" : "border-border"
+              className={`relative rounded-2xl p-7 transition ${
+                plan.hot
+                  ? "border border-primary/50 bg-white/[0.05]"
+                  : "border border-white/[0.07] bg-white/[0.03] hover:border-white/[0.15]"
               }`}
+              style={plan.hot ? { boxShadow: "0 0 50px rgba(224,92,42,0.12), 0 0 0 1px rgba(224,92,42,0.15)" } : {}}
             >
               {plan.hot && (
-                <div className="absolute -top-[13px] left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] tracking-[1.5px] uppercase px-4 py-[3px] rounded-full whitespace-nowrap font-medium">
+                <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 text-white text-[10px] tracking-[1.5px] uppercase px-4 py-1 rounded-full whitespace-nowrap font-semibold"
+                  style={{ background: "linear-gradient(135deg, #E05C2A, #FF7040)", boxShadow: "0 0 20px rgba(224,92,42,0.5)" }}>
                   Most popular
                 </div>
               )}
-              <div className="text-[11px] tracking-[2px] uppercase text-text-tertiary mb-1">{plan.tier}</div>
-              <div className="font-[family-name:var(--font-bebas)] text-[54px] leading-none flex items-start gap-[3px]">
-                <sup className="text-[22px] mt-[10px] font-[family-name:var(--font-dm)] font-light">$</sup>
-                {plan.price}
+              <div className="text-[10px] tracking-[2px] uppercase text-text-tertiary mb-2">{plan.tier}</div>
+              <div className="font-[family-name:var(--font-bebas)] text-[62px] leading-none flex items-start gap-[2px] mb-0.5">
+                <sup className="text-[20px] mt-[16px] font-[family-name:var(--font-dm)] font-light text-text-secondary">$</sup>
+                <span style={plan.hot ? { background: "linear-gradient(135deg, #E05C2A, #FF8C5A)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" } : {}}>
+                  {plan.price}
+                </span>
               </div>
-              <div className="text-[13px] text-text-tertiary mb-1.5">per month · cancel anytime</div>
+              <div className="text-[11px] text-text-tertiary mb-0.5">per month · cancel anytime</div>
+              <div className="text-[11px] text-primary/70 mb-4">from ${plan.perAd}/ad</div>
               <div className="text-[12px] text-text-secondary mb-5">{plan.subtitle}</div>
-              <div className="h-px bg-border mb-5" />
-              <ul className="list-none space-y-0">
+              <div className="h-px bg-white/[0.06] mb-5" />
+              <ul className="space-y-0 mb-6">
                 {plan.features.map((f) => (
-                  <li key={f} className="text-[13px] text-text-secondary py-[5px] flex items-start gap-[10px]">
-                    <span className="w-[5px] h-[5px] rounded-full bg-primary shrink-0 mt-[6px]" />
+                  <li key={f} className="text-[12px] text-text-secondary py-[5px] flex items-start gap-2.5">
+                    <span className="w-[5px] h-[5px] rounded-full bg-primary shrink-0 mt-[5px]" />
                     {f}
                   </li>
                 ))}
               </ul>
               <a
                 href="#contact"
-                className={`block w-full mt-6 py-3 rounded-[7px] text-sm font-medium text-center cursor-pointer transition ${
+                className={`block w-full py-3 rounded-xl text-[13px] font-semibold text-center cursor-pointer transition ${
                   plan.hot
-                    ? "bg-primary text-white border border-primary hover:brightness-110"
-                    : "bg-transparent text-text border border-border hover:border-text-secondary"
+                    ? "text-white"
+                    : "bg-white/[0.06] text-text border border-white/[0.1] hover:bg-white/[0.1]"
                 }`}
+                style={plan.hot ? {
+                  background: "linear-gradient(135deg, #E05C2A, #FF7040)",
+                  boxShadow: "0 0 25px rgba(224,92,42,0.35)"
+                } : {}}
               >
                 {plan.cta}
               </a>
             </div>
           ))}
         </div>
+        <p className="text-center text-[12px] text-text-tertiary mt-6">
+          💡 Traditional agency video ads cost $2,000–$10,000 <em>per ad</em>. FireReel starts at <strong className="text-text">$295/ad</strong>.
+        </p>
       </section>
 
       {/* ─── WHO WE WORK WITH ─── */}
-      <div className="bg-card py-14 px-8 border-y border-border">
-        <div className="max-w-[920px] mx-auto">
+      <div className="py-16 px-6 md:px-10 border-y border-white/[0.06]" style={{ background: "rgba(255,255,255,0.02)" }}>
+        <div className="max-w-[1000px] mx-auto">
           <div className="text-[11px] tracking-[3px] uppercase text-primary mb-4 font-medium">Who we work with</div>
-          <h2 className="font-[family-name:var(--font-bebas)] text-[clamp(28px,4vw,44px)] leading-none mb-2">
+          <h2 className="font-[family-name:var(--font-bebas)] text-[clamp(30px,4vw,50px)] leading-none mb-8">
             If you sell something,<br />we can make it sell faster.
           </h2>
-          <div className="flex flex-wrap gap-[10px] mt-7">
+          <div className="flex flex-wrap gap-3">
             {chips.map((c) => (
               <div
                 key={c.label}
-                className={`py-[7px] px-[18px] rounded-full text-[13px] cursor-default border bg-bg ${
-                  c.fire ? "border-primary text-primary" : "border-border text-text-secondary"
+                className={`py-2 px-5 rounded-full text-[12px] font-medium border cursor-default transition ${
+                  c.fire
+                    ? "border-primary/50 text-primary bg-primary/[0.08] hover:bg-primary/[0.14]"
+                    : "border-white/[0.08] text-text-secondary bg-white/[0.03] hover:border-white/20"
                 }`}
               >
-                {c.label}
+                {c.fire && "🔥 "}{c.label}
               </div>
             ))}
           </div>
@@ -525,48 +591,51 @@ export default function HomePage() {
       </div>
 
       {/* ─── WHY FIREREEL ─── */}
-      <section id="why-firereel" className="py-[4.5rem] px-8 max-w-[920px] mx-auto">
+      <section className="py-16 px-6 md:px-10 max-w-[1000px] mx-auto">
         <div className="text-[11px] tracking-[3px] uppercase text-primary mb-4 font-medium">Why FireReel</div>
-        <h2 className="font-[family-name:var(--font-bebas)] text-[clamp(34px,5vw,56px)] leading-none mb-2">
+        <h2 className="font-[family-name:var(--font-bebas)] text-[clamp(36px,5vw,62px)] leading-none mb-3">
           AI production.<br />Human standards.
         </h2>
         <p className="text-base text-text-secondary font-light mb-10 max-w-[480px]">
-          Anyone can generate a video with AI. We built a production pipeline that uses AI where it makes things faster — and humans where it makes things better.
+          Anyone can generate a video with AI. We built a pipeline that uses AI where it makes things faster — and humans where it makes things better.
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {differCards.map((card) => (
-            <div key={card.title} className="p-6 border border-border rounded-xl bg-bg">
-              <div className="w-9 h-9 rounded-lg bg-card flex items-center justify-center mb-4 text-base">
+            <div key={card.title} className="p-6 border border-white/[0.07] rounded-2xl bg-white/[0.03] hover:border-primary/30 hover:bg-white/[0.05] transition">
+              <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-4 text-lg">
                 {card.icon}
               </div>
-              <h3 className="text-sm font-medium mb-1.5">{card.title}</h3>
-              <p className="text-[13px] text-text-secondary leading-[1.6]">{card.desc}</p>
+              <h3 className="text-[14px] font-semibold mb-2 text-text">{card.title}</h3>
+              <p className="text-[13px] text-text-secondary leading-[1.65]">{card.desc}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* ─── TESTIMONIALS ─── */}
-      <div className="bg-card py-14 px-8 border-y border-border">
-        <div className="max-w-[920px] mx-auto">
+      <div className="py-16 px-6 md:px-10 border-y border-white/[0.06]" style={{ background: "rgba(255,255,255,0.02)" }}>
+        <div className="max-w-[1000px] mx-auto">
           <div className="text-[11px] tracking-[3px] uppercase text-primary mb-4 font-medium">Client results</div>
-          <h2 className="font-[family-name:var(--font-bebas)] text-[clamp(28px,4vw,44px)] leading-none mb-8">
+          <h2 className="font-[family-name:var(--font-bebas)] text-[clamp(30px,4vw,50px)] leading-none mb-10">
             Don&apos;t take our word for it.
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {testimonials.map((t) => (
-              <div key={t.name} className="bg-bg border border-border rounded-xl p-6 flex flex-col gap-4">
-                <div className="flex gap-0.5">
-                  {[...Array(5)].map((_, i) => (
-                    <svg key={i} className="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
-                  ))}
+              <div key={t.name} className="bg-white/[0.03] border border-white/[0.08] rounded-2xl p-6 flex flex-col gap-4 hover:border-white/20 transition">
+                <div className="flex items-center justify-between">
+                  <div className="flex gap-0.5">
+                    {[...Array(5)].map((_, i) => (
+                      <svg key={i} className="w-3.5 h-3.5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    ))}
+                  </div>
+                  <span className="text-[11px] font-semibold text-primary bg-primary/10 px-2.5 py-1 rounded-full">{t.metric}</span>
                 </div>
-                <p className="text-[13px] text-text-secondary leading-[1.7] flex-1">&ldquo;{t.quote}&rdquo;</p>
+                <p className="text-[13px] text-text-secondary leading-[1.75] flex-1 italic">&ldquo;{t.quote}&rdquo;</p>
                 <div>
-                  <div className="text-[13px] font-medium">{t.name}</div>
-                  <div className="text-[12px] text-text-tertiary">{t.business}</div>
+                  <div className="text-[13px] font-semibold text-text">{t.name}</div>
+                  <div className="text-[11px] text-text-tertiary">{t.business}</div>
                 </div>
               </div>
             ))}
@@ -575,35 +644,47 @@ export default function HomePage() {
       </div>
 
       {/* ─── FAQ ─── */}
-      <section className="py-16 px-8 max-w-[680px] mx-auto">
-        <div className="text-[11px] tracking-[3px] uppercase text-primary mb-4 font-medium">Questions</div>
-        <h2 className="font-[family-name:var(--font-bebas)] text-[clamp(28px,4vw,44px)] leading-none mb-6">
+      <section className="py-16 px-6 md:px-10 max-w-[700px] mx-auto">
+        <div className="text-[11px] tracking-[3px] uppercase text-primary mb-4 font-medium">FAQ</div>
+        <h2 className="font-[family-name:var(--font-bebas)] text-[clamp(30px,4vw,50px)] leading-none mb-8">
           Everything you need<br />to know.
         </h2>
-        {faqs.map((faq) => (
-          <div key={faq.q} className="border-b border-border py-5">
-            <div className="text-[15px] font-medium mb-2">{faq.q}</div>
-            <div className="text-[13px] text-text-secondary leading-[1.7]">{faq.a}</div>
-          </div>
-        ))}
+        <div className="space-y-2">
+          {faqs.map((faq, i) => (
+            <div key={faq.q} className="border border-white/[0.07] rounded-xl overflow-hidden">
+              <button
+                onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                className="w-full text-left px-5 py-4 flex items-center justify-between gap-4 hover:bg-white/[0.04] transition cursor-pointer"
+              >
+                <span className="text-[14px] font-medium text-text">{faq.q}</span>
+                <span className={`text-primary text-xl shrink-0 transition-transform duration-200 ${openFaq === i ? "rotate-45" : ""}`}>+</span>
+              </button>
+              {openFaq === i && (
+                <div className="px-5 pb-5 text-[13px] text-text-secondary leading-[1.8] border-t border-white/[0.06] pt-4">
+                  {faq.a}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
       </section>
 
       {/* ─── CONTACT FORM ─── */}
-      <section id="contact" className="py-[4.5rem] px-8 max-w-[680px] mx-auto">
+      <section id="contact" className="py-16 px-6 md:px-10 max-w-[680px] mx-auto">
         <div className="text-[11px] tracking-[3px] uppercase text-primary mb-4 font-medium">Get started</div>
-        <h2 className="font-[family-name:var(--font-bebas)] text-[clamp(28px,4vw,44px)] leading-none mb-2">
+        <h2 className="font-[family-name:var(--font-bebas)] text-[clamp(30px,4vw,50px)] leading-none mb-2">
           Your first batch of ads<br />is one form away.
         </h2>
         <p className="text-base text-text-secondary font-light mb-2 max-w-[480px]">
-          Tell us about your business. We&apos;ll tell you exactly how we&apos;d make it look incredible on video.
+          Tell us about your business. We&apos;ll show you exactly how we&apos;d make it look incredible on video.
         </p>
         <div className="inline-flex items-center gap-2 mb-8 text-[12px] text-text-tertiary">
-          <span className="w-2 h-2 rounded-full bg-green-500 inline-block" />
+          <span className="w-2 h-2 rounded-full bg-green-500 inline-block animate-[pulse_2s_infinite]" />
           A real human responds within 4 business hours.
         </div>
 
         {formSubmitted ? (
-          <div className="border border-primary/30 rounded-xl p-10 text-center bg-card">
+          <div className="border border-primary/30 rounded-2xl p-10 text-center bg-primary/[0.06]">
             <div className="text-5xl mb-4">🔥</div>
             <h3 className="font-[family-name:var(--font-bebas)] text-3xl mb-2">You&apos;re in!</h3>
             <p className="text-sm text-text-secondary">
@@ -625,58 +706,42 @@ export default function HomePage() {
                 if (res.ok) setFormSubmitted(true);
               });
             }}
-            className="space-y-4"
+            className="space-y-3"
           >
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <input
-                name="name"
-                type="text"
-                required
-                placeholder="Full name"
-                className="w-full bg-bg border border-border rounded-lg px-4 py-3 text-sm text-text placeholder-text-tertiary focus:outline-none focus:border-primary transition"
-              />
-              <input
-                name="email"
-                type="email"
-                required
-                placeholder="Email address"
-                className="w-full bg-bg border border-border rounded-lg px-4 py-3 text-sm text-text placeholder-text-tertiary focus:outline-none focus:border-primary transition"
-              />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <input name="name" type="text" required placeholder="Full name"
+                className="w-full bg-white/[0.05] border border-white/[0.1] rounded-xl px-4 py-3 text-sm text-text placeholder-text-tertiary focus:outline-none focus:border-primary transition" />
+              <input name="email" type="email" required placeholder="Email address"
+                className="w-full bg-white/[0.05] border border-white/[0.1] rounded-xl px-4 py-3 text-sm text-text placeholder-text-tertiary focus:outline-none focus:border-primary transition" />
             </div>
-            <input
-              name="business"
-              type="text"
-              required
-              placeholder="Business name"
-              className="w-full bg-bg border border-border rounded-lg px-4 py-3 text-sm text-text placeholder-text-tertiary focus:outline-none focus:border-primary transition"
-            />
-            <select
-              name="plan"
-              className="w-full bg-bg border border-border rounded-lg px-4 py-3 text-sm text-text focus:outline-none focus:border-primary transition"
-            >
+            <input name="business" type="text" required placeholder="Business name"
+              className="w-full bg-white/[0.05] border border-white/[0.1] rounded-xl px-4 py-3 text-sm text-text placeholder-text-tertiary focus:outline-none focus:border-primary transition" />
+            <select name="plan"
+              className="w-full bg-white/[0.05] border border-white/[0.1] rounded-xl px-4 py-3 text-sm text-text focus:outline-none focus:border-primary transition appearance-none"
+              style={{ colorScheme: "dark" }}>
               <option value="starter">Starter — 2 ads · $590/mo</option>
               <option value="growth">Growth — 4 ads · $997/mo</option>
               <option value="brand">Brand — 8 ads · $2,050/mo</option>
               <option value="unsure">Not sure yet</option>
             </select>
-            <select
-              name="footage"
-              className="w-full bg-bg border border-border rounded-lg px-4 py-3 text-sm text-text focus:outline-none focus:border-primary transition"
-            >
+            <select name="footage"
+              className="w-full bg-white/[0.05] border border-white/[0.1] rounded-xl px-4 py-3 text-sm text-text focus:outline-none focus:border-primary transition appearance-none"
+              style={{ colorScheme: "dark" }}>
               <option value="have-footage">I have footage / assets to send</option>
               <option value="no-footage">I don&apos;t have footage — build from scratch</option>
               <option value="mix">I have some stuff, you fill the gaps</option>
               <option value="unsure">Not sure yet</option>
             </select>
-            <textarea
-              name="message"
-              rows={4}
+            <textarea name="message" rows={4}
               placeholder="Tell us about your business — what you sell, who your customers are, and what kind of ads you're after"
-              className="w-full bg-bg border border-border rounded-lg px-4 py-3 text-sm text-text placeholder-text-tertiary focus:outline-none focus:border-primary transition resize-none"
-            />
+              className="w-full bg-white/[0.05] border border-white/[0.1] rounded-xl px-4 py-3 text-sm text-text placeholder-text-tertiary focus:outline-none focus:border-primary transition resize-none" />
             <button
               type="submit"
-              className="w-full bg-primary text-white border-none rounded-lg py-3.5 text-[15px] font-medium cursor-pointer hover:brightness-110 transition"
+              className="w-full text-white rounded-xl py-4 text-[15px] font-semibold cursor-pointer transition"
+              style={{
+                background: "linear-gradient(135deg, #E05C2A 0%, #FF7040 100%)",
+                boxShadow: "0 0 40px rgba(224,92,42,0.35)"
+              }}
             >
               Get my first ads →
             </button>
@@ -684,29 +749,40 @@ export default function HomePage() {
         )}
       </section>
 
-      {/* ─── CTA ─── */}
-      <div className="text-center py-20 px-8 border-t border-border">
-        <h2 className="font-[family-name:var(--font-bebas)] text-[clamp(38px,7vw,72px)] leading-none mb-4">
-          Your competitors are<br />already running <span className="text-primary">video ads.</span>
-        </h2>
-        <p className="text-base text-text-secondary mb-4 font-light max-w-lg mx-auto">
-          The businesses winning on social right now aren&apos;t spending $10k on a production crew. They&apos;re using FireReel.
-        </p>
-        <p className="text-[13px] text-text-tertiary mb-10">
-          Not happy with your first batch? A real human will personally rework it — guaranteed.
-        </p>
-        <a
-          href="#contact"
-          className="inline-block bg-primary text-white border-none rounded-lg px-9 py-4 text-base font-medium cursor-pointer hover:brightness-110 transition"
-        >
-          Start your first month →
-        </a>
+      {/* ─── CTA BANNER ─── */}
+      <div className="relative text-center py-24 px-6 md:px-10 border-t border-white/[0.06] overflow-hidden">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] pointer-events-none"
+          style={{ background: "radial-gradient(ellipse, rgba(224,92,42,0.10) 0%, transparent 70%)" }} />
+        <div className="relative">
+          <h2 className="font-[family-name:var(--font-bebas)] text-[clamp(40px,7vw,82px)] leading-[0.9] mb-5">
+            Your competitors are<br />already running{" "}
+            <span style={{ background: "linear-gradient(135deg, #E05C2A, #FF8C5A)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+              video ads.
+            </span>
+          </h2>
+          <p className="text-base text-text-secondary mb-4 font-light max-w-lg mx-auto">
+            The businesses winning on social aren&apos;t spending $10k on production crews. They&apos;re using FireReel.
+          </p>
+          <p className="text-[13px] text-text-tertiary mb-10">
+            Not happy with your first batch? A real human will personally rework it — guaranteed.
+          </p>
+          <a
+            href="#contact"
+            className="inline-block text-white rounded-xl px-10 py-4 text-base font-semibold transition"
+            style={{
+              background: "linear-gradient(135deg, #E05C2A 0%, #FF7040 100%)",
+              boxShadow: "0 0 50px rgba(224,92,42,0.45)"
+            }}
+          >
+            Start your first month →
+          </a>
+        </div>
       </div>
 
       {/* ─── FOOTER ─── */}
-      <footer className="px-8 py-6 text-center text-xs text-text-tertiary border-t border-border flex justify-between items-center flex-wrap gap-2">
-        <span>© 2026 FireReel · firereel.net</span>
-        <span>AI production. Human standards. · Born in Adelaide, serving the world</span>
+      <footer className="px-6 md:px-10 py-6 border-t border-white/[0.06] flex justify-between items-center flex-wrap gap-2">
+        <span className="text-xs text-text-tertiary">© 2026 FireReel · firereel.net</span>
+        <span className="text-xs text-text-tertiary">AI production. Human standards. · Born in Adelaide, serving the world</span>
       </footer>
     </div>
   );

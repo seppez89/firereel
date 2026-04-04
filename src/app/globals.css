@@ -3,18 +3,23 @@
 @theme {
   --color-primary: #E05C2A;
   --color-primary-light: #FF8C5A;
-  --color-bg: #FAFAF8;
-  --color-card: #F0EFEB;
-  --color-text: #1C1C1A;
-  --color-text-secondary: #706F6A;
-  --color-text-tertiary: #A8A69E;
-  --color-border: #E2E0D8;
-  --color-border-secondary: #C8C6BE;
+  --color-bg: #080808;
+  --color-card: #111111;
+  --color-text: #FFFFFF;
+  --color-text-secondary: #888888;
+  --color-text-tertiary: #444444;
+  --color-border: #1E1E1E;
+  --color-border-secondary: #2A2A2A;
 }
 
 @keyframes pulse {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.3; }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 html {
@@ -24,4 +29,10 @@ html {
 body {
   background-color: var(--color-bg);
   color: var(--color-text);
+}
+
+.marquee-track {
+  animation: marquee 25s linear infinite;
+  display: flex;
+  width: max-content;
 }
