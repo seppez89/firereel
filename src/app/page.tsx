@@ -120,6 +120,7 @@ const adPreviews = [
     accent: "#4A90D9",
     tag: "JUST LISTED",
     tagBg: "#E05C2A",
+    videoUrl: "https://pub-4ef325eb18e2417496a343f696ab87f1.r2.dev/14%20Boston%20Ave%2C%20Lockleys%20AD.mov",
   },
   {
     id: 2,
@@ -288,65 +289,79 @@ export default function HomePage() {
               className="group relative shrink-0 w-[180px] md:w-auto snap-start rounded-2xl overflow-hidden cursor-pointer"
               style={{ aspectRatio: "9/16" }}
             >
-              {/* Background */}
-              <div className={`absolute inset-0 bg-gradient-to-b ${ad.bg}`} />
+              {ad.videoUrl ? (
+                /* ── Native video embed ── */
+                <>
+                  <video
+                    src={ad.videoUrl}
+                    controls
+                    playsInline
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                  {/* Label overlay */}
+                  <div className="absolute top-2 left-2 z-10 pointer-events-none">
+                    <div
+                      className="text-[8px] font-bold tracking-[1.5px] uppercase px-2 py-[3px] rounded-full text-white"
+                      style={{ background: ad.tagBg }}
+                    >
+                      {ad.tag}
+                    </div>
+                  </div>
+                </>
+              ) : (
+                /* ── Mock card ── */
+                <>
+                  {/* Background */}
+                  <div className={`absolute inset-0 bg-gradient-to-b ${ad.bg}`} />
 
-              {/* Noise texture overlay */}
-              <div className="absolute inset-0 opacity-[0.03] bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjc1IiBzdGl0Y2hUaWxlcz0ic3RpdGNoIi8+PC9maWx0ZXI+PHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSIzMDAiIGZpbHRlcj0idXJsKCNhKSIvPjwvc3ZnPg==')]" />
+                  {/* Noise texture overlay */}
+                  <div className="absolute inset-0 opacity-[0.03] bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjc1IiBzdGl0Y2hUaWxlcz0ic3RpdGNoIi8+PC9maWx0ZXI+PHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSIzMDAiIGZpbHRlcj0idXJsKCNhKSIvPjwvc3ZnPg==')]" />
 
-              {/* Top bar */}
-              <div className="absolute top-0 left-0 right-0 p-3 flex items-center justify-between z-10">
-                <div
-                  className="text-[8px] font-bold tracking-[1.5px] uppercase px-2 py-[3px] rounded-full text-white"
-                  style={{ background: ad.tagBg }}
-                >
-                  {ad.tag}
-                </div>
-                <div className="text-[9px] text-white/50 font-medium">{ad.format}</div>
-              </div>
+                  {/* Top bar */}
+                  <div className="absolute top-0 left-0 right-0 p-3 flex items-center justify-between z-10">
+                    <div
+                      className="text-[8px] font-bold tracking-[1.5px] uppercase px-2 py-[3px] rounded-full text-white"
+                      style={{ background: ad.tagBg }}
+                    >
+                      {ad.tag}
+                    </div>
+                    <div className="text-[9px] text-white/50 font-medium">{ad.format}</div>
+                  </div>
 
-              {/* Simulated visual area — abstract brand shapes */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div
-                  className="w-16 h-16 rounded-full opacity-20 blur-2xl"
-                  style={{ background: ad.accent }}
-                />
-                <div
-                  className="absolute w-24 h-24 rounded-full opacity-10 blur-3xl"
-                  style={{ background: ad.accent }}
-                />
-              </div>
+                  {/* Simulated visual area */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-16 h-16 rounded-full opacity-20 blur-2xl" style={{ background: ad.accent }} />
+                    <div className="absolute w-24 h-24 rounded-full opacity-10 blur-3xl" style={{ background: ad.accent }} />
+                  </div>
 
-              {/* Simulated caption bar (mid) */}
-              <div className="absolute left-3 right-3 top-1/2 -translate-y-1/2 z-10">
-                <div className="bg-white/10 backdrop-blur-sm rounded-lg px-3 py-2 border border-white/10">
-                  <div className="text-[9px] text-white/50 mb-1">{ad.brand}</div>
-                  <div className="text-[11px] font-semibold text-white leading-tight">{ad.headline}</div>
-                </div>
-              </div>
+                  {/* Caption bar */}
+                  <div className="absolute left-3 right-3 top-1/2 -translate-y-1/2 z-10">
+                    <div className="bg-white/10 backdrop-blur-sm rounded-lg px-3 py-2 border border-white/10">
+                      <div className="text-[9px] text-white/50 mb-1">{ad.brand}</div>
+                      <div className="text-[11px] font-semibold text-white leading-tight">{ad.headline}</div>
+                    </div>
+                  </div>
 
-              {/* Bottom CTA */}
-              <div className="absolute bottom-0 left-0 right-0 p-3 z-10">
-                <div
-                  className="w-full text-center text-[9px] font-bold py-2 rounded-lg text-white"
-                  style={{ background: ad.accent }}
-                >
-                  {ad.cta}
-                </div>
-                <div className="text-[8px] text-white/30 text-center mt-1.5">{ad.industry}</div>
-              </div>
+                  {/* Bottom CTA */}
+                  <div className="absolute bottom-0 left-0 right-0 p-3 z-10">
+                    <div className="w-full text-center text-[9px] font-bold py-2 rounded-lg text-white" style={{ background: ad.accent }}>
+                      {ad.cta}
+                    </div>
+                    <div className="text-[8px] text-white/30 text-center mt-1.5">{ad.industry}</div>
+                  </div>
 
-              {/* Play button overlay on hover */}
-              <div className="absolute inset-0 flex items-center justify-center z-20 opacity-0 group-hover:opacity-100 transition-opacity bg-black/30">
-                <div className="w-12 h-12 rounded-full bg-white/90 flex items-center justify-center shadow-xl">
-                  <svg className="w-5 h-5 text-gray-900 ml-0.5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
-                </div>
-              </div>
+                  {/* Play button on hover */}
+                  <div className="absolute inset-0 flex items-center justify-center z-20 opacity-0 group-hover:opacity-100 transition-opacity bg-black/30">
+                    <div className="w-12 h-12 rounded-full bg-white/90 flex items-center justify-center shadow-xl">
+                      <svg className="w-5 h-5 text-gray-900 ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </div>
+                  </div>
 
-              {/* Hover scale */}
-              <div className="absolute inset-0 ring-2 ring-transparent group-hover:ring-white/20 rounded-2xl transition-all group-hover:scale-[1.01] pointer-events-none" />
+                  <div className="absolute inset-0 ring-2 ring-transparent group-hover:ring-white/20 rounded-2xl transition-all group-hover:scale-[1.01] pointer-events-none" />
+                </>
+              )}
             </div>
           ))}
         </div>
