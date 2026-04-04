@@ -120,7 +120,7 @@ const adPreviews = [
     accent: "#4A90D9",
     tag: "JUST LISTED",
     tagBg: "#E05C2A",
-    videoUrl: "https://pub-4ef325eb18e2417496a343f696ab87f1.r2.dev/14%20Boston%20Ave%2C%20Lockleys%20AD.mov",
+    videoUrl: "https://pub-4ef325eb18e2417496a343f696ab87f1.r2.dev/Untitled.m4v",
   },
   {
     id: 2,
