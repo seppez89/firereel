@@ -166,6 +166,7 @@ const adPreviews = [
     tag: "NEW DROP",
     tagBg: "#7C3AED",
     videoUrl: "https://pub-4ef325eb18e2417496a343f696ab87f1.r2.dev/firereel/1%20-%204K.mp4",
+    vertical: true,
   },
   {
     id: 3,
@@ -378,7 +379,7 @@ export default function HomePage() {
 
         <div className="flex flex-col gap-4">
           {filteredAds.filter(ad => ad.videoUrl).map((ad) => (
-            <div key={ad.id} className="relative w-full rounded-2xl overflow-hidden border border-border" style={{ aspectRatio: "16/9" }}>
+            <div key={ad.id} className={`relative rounded-2xl overflow-hidden border border-border ${ad.vertical ? "max-w-[360px] mx-auto w-full" : "w-full"}`} style={{ aspectRatio: ad.vertical ? "9/16" : "16/9" }}>
               <video src={ad.videoUrl} controls playsInline className="absolute inset-0 w-full h-full object-cover" />
               <div className="absolute top-3 left-3 z-10 pointer-events-none">
                 <div className="text-[8px] font-bold tracking-[1.5px] uppercase px-2 py-[3px] rounded-full text-white" style={{ background: ad.tagBg }}>{ad.tag}</div>
