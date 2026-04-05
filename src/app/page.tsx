@@ -47,7 +47,6 @@ const plans = [
       "Human script & strategy included",
       "Your footage, ours, or a mix of both",
       "2 revision rounds per ad",
-      "A/B variant testing included",
       "Priority 3-day delivery",
     ],
     cta: "Start getting ads",
@@ -64,7 +63,6 @@ const plans = [
       "Cloned voice of your choice",
       "Full ad strategy, scripting & creative direction",
       "Unlimited revisions",
-      "Dedicated strategist",
       "Priority 48-hour turnaround",
       "Monthly strategy call",
     ],
@@ -201,7 +199,7 @@ export default function HomePage() {
       {/* ─── NAV ─── */}
       <nav className="sticky top-0 z-50 flex items-center justify-between px-6 md:px-10 py-4 border-b border-border bg-bg/90 backdrop-blur-xl">
         <a href="/">
-          <img src="/logo.png" alt="FireReel" className="h-10 w-auto" />
+          <img src="/logo.png" alt="FireReel" className="h-16 w-auto -my-4" />
         </a>
         <div className="hidden md:flex items-center gap-8">
           <a href="#how-it-works" className="text-sm text-text-secondary hover:text-text transition">How it works</a>
