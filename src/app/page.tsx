@@ -95,14 +95,14 @@ const differCards = [
 const testimonials = [
   {
     quote: "I sent them shaky phone footage from a property walkthrough. What came back looked like it cost $5,000 to produce. Our engagement tripled in the first month.",
-    name: "Sarah M.",
-    business: "E-commerce, Melbourne AU",
+    name: "Ilario Condello",
+    business: "Orbiton Real Estate, Adelaide AU",
     metric: "3× engagement",
   },
   {
-    quote: "We had zero footage, zero assets, zero idea what we wanted. They handled everything. Six ads landed in our portal on day three and every single one was usable.",
-    name: "James T.",
-    business: "Real Estate Agency, London UK",
+    quote: "So Easy, i didnt have to use any tools, videos just delivered and are ready for our marketing team to post!",
+    name: "Sophie M.",
+    business: "Kora Organics, Sydney AU",
     metric: "0 assets needed",
   },
   {
