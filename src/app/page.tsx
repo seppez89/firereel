@@ -377,43 +377,44 @@ export default function HomePage() {
           ))}
         </div>
 
-        <div className="flex flex-col gap-4">
-          {filteredAds.filter(ad => ad.videoUrl).map((ad) => (
-            <div key={ad.id} className={`relative rounded-2xl overflow-hidden border border-border ${ad.vertical ? "max-w-[360px] mx-auto w-full" : "w-full"}`} style={{ aspectRatio: ad.vertical ? "9/16" : "16/9" }}>
-              <video src={ad.videoUrl} controls playsInline className="absolute inset-0 w-full h-full object-cover" />
-              <div className="absolute top-3 left-3 z-10 pointer-events-none">
-                <div className="text-[8px] font-bold tracking-[1.5px] uppercase px-2 py-[3px] rounded-full text-white" style={{ background: ad.tagBg }}>{ad.tag}</div>
-              </div>
+        <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory -mx-6 px-6 md:-mx-10 md:px-10" style={{ scrollbarWidth: "none" }}>
+          {filteredAds.map((ad) => (
+            <div key={ad.id} className="group relative shrink-0 snap-start rounded-2xl overflow-hidden border border-border" style={{ height: "500px", width: "300px" }}>
+              {ad.videoUrl ? (
+                <>
+                  <video src={ad.videoUrl} controls playsInline className="absolute inset-0 w-full h-full object-cover" />
+                  <div className="absolute top-3 left-3 z-10 pointer-events-none">
+                    <div className="text-[8px] font-bold tracking-[1.5px] uppercase px-2 py-[3px] rounded-full text-white" style={{ background: ad.tagBg }}>{ad.tag}</div>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className={`absolute inset-0 bg-gradient-to-b ${ad.bg}`} />
+                  <div className="absolute top-0 left-0 right-0 p-3 flex items-center justify-between z-10">
+                    <div className="text-[8px] font-bold tracking-[1.5px] uppercase px-2 py-[3px] rounded-full text-white" style={{ background: ad.tagBg }}>{ad.tag}</div>
+                    <div className="text-[9px] text-white/50 font-medium">{ad.format}</div>
+                  </div>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-16 h-16 rounded-full opacity-20 blur-2xl" style={{ background: ad.accent }} />
+                  </div>
+                  <div className="absolute left-3 right-3 top-1/2 -translate-y-1/2 z-10">
+                    <div className="bg-white/10 backdrop-blur-sm rounded-lg px-3 py-2 border border-white/10">
+                      <div className="text-[9px] text-white/50 mb-1">{ad.brand}</div>
+                      <div className="text-[11px] font-semibold text-white leading-tight">{ad.headline}</div>
+                    </div>
+                  </div>
+                  <div className="absolute bottom-0 left-0 right-0 p-3 z-10">
+                    <div className="w-full text-center text-[9px] font-bold py-2 rounded-lg text-white" style={{ background: ad.accent }}>{ad.cta}</div>
+                  </div>
+                  <div className="absolute inset-0 flex items-center justify-center z-20 opacity-0 group-hover:opacity-100 transition-opacity bg-black/30">
+                    <div className="w-12 h-12 rounded-full bg-white/90 flex items-center justify-center shadow-xl">
+                      <svg className="w-5 h-5 text-gray-900 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+                    </div>
+                  </div>
+                </>
+              )}
             </div>
           ))}
-          <div className="flex gap-4 overflow-x-auto pb-2 snap-x snap-mandatory -mx-4 px-4 md:mx-0 md:px-0 md:grid md:grid-cols-2 md:overflow-visible">
-            {filteredAds.filter(ad => !ad.videoUrl).map((ad) => (
-              <div key={ad.id} className="group relative shrink-0 w-[180px] md:w-auto snap-start rounded-2xl overflow-hidden cursor-pointer border border-border" style={{ aspectRatio: "9/16" }}>
-                <div className={`absolute inset-0 bg-gradient-to-b ${ad.bg}`} />
-                <div className="absolute top-0 left-0 right-0 p-3 flex items-center justify-between z-10">
-                  <div className="text-[8px] font-bold tracking-[1.5px] uppercase px-2 py-[3px] rounded-full text-white" style={{ background: ad.tagBg }}>{ad.tag}</div>
-                  <div className="text-[9px] text-white/50 font-medium">{ad.format}</div>
-                </div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-16 h-16 rounded-full opacity-20 blur-2xl" style={{ background: ad.accent }} />
-                </div>
-                <div className="absolute left-3 right-3 top-1/2 -translate-y-1/2 z-10">
-                  <div className="bg-white/10 backdrop-blur-sm rounded-lg px-3 py-2 border border-white/10">
-                    <div className="text-[9px] text-white/50 mb-1">{ad.brand}</div>
-                    <div className="text-[11px] font-semibold text-white leading-tight">{ad.headline}</div>
-                  </div>
-                </div>
-                <div className="absolute bottom-0 left-0 right-0 p-3 z-10">
-                  <div className="w-full text-center text-[9px] font-bold py-2 rounded-lg text-white" style={{ background: ad.accent }}>{ad.cta}</div>
-                </div>
-                <div className="absolute inset-0 flex items-center justify-center z-20 opacity-0 group-hover:opacity-100 transition-opacity bg-black/30">
-                  <div className="w-12 h-12 rounded-full bg-white/90 flex items-center justify-center shadow-xl">
-                    <svg className="w-5 h-5 text-gray-900 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
         {filteredAds.length === 0 && <p className="text-text-tertiary text-sm text-center py-12">No samples in this category yet.</p>}
       </section>
