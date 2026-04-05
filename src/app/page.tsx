@@ -379,7 +379,7 @@ export default function HomePage() {
 
         <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory -mx-6 px-6 md:-mx-10 md:px-10" style={{ scrollbarWidth: "none" }}>
           {filteredAds.map((ad) => (
-            <div key={ad.id} className="group relative shrink-0 snap-start rounded-2xl overflow-hidden border border-border" style={{ height: "500px", width: "300px" }}>
+            <div key={ad.id} className="group relative shrink-0 snap-start rounded-2xl overflow-hidden border border-border" style={{ height: "500px", width: ad.vertical || !ad.videoUrl ? "300px" : "889px" }}>
               {ad.videoUrl ? (
                 <>
                   <video src={ad.videoUrl} controls playsInline className="absolute inset-0 w-full h-full object-cover" />
