@@ -156,15 +156,16 @@ const adPreviews = [
   },
   {
     id: 2,
-    industry: "E-Commerce",
-    format: "TikTok",
-    brand: "Glow Skin Co.",
+    industry: "Health & Beauty",
+    format: "Reel",
+    brand: "Kora Organics",
     headline: "Your skin routine just got easier",
     cta: "Shop the range →",
     bg: "from-[#2d1b3d] to-[#1a0a2e]",
     accent: "#C084FC",
     tag: "NEW DROP",
     tagBg: "#7C3AED",
+    videoUrl: "https://pub-4ef325eb18e2417496a343f696ab87f1.r2.dev/firereel/1%20-%204K.mp4",
   },
   {
     id: 3,
@@ -180,7 +181,7 @@ const adPreviews = [
   },
 ];
 
-const filterTabs = ["All", "Real Estate", "E-Commerce", "Health & Fitness"];
+const filterTabs = ["All", "Real Estate", "Health & Beauty", "Health & Fitness"];
 
 /* ─── COMPONENT ─── */
 
