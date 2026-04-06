@@ -221,6 +221,15 @@ export default function HomePage() {
           style={{ background: "radial-gradient(ellipse, rgba(224,92,42,0.07) 0%, transparent 70%)" }} />
 
         <div className="relative">
+          {/* Hero logo mark */}
+          <div className="flex justify-center mb-6">
+            <div className="relative">
+              <div className="absolute inset-0 scale-150 rounded-full blur-3xl opacity-30 animate-[pulse_3s_infinite]"
+                style={{ background: "radial-gradient(circle, #E05C2A 0%, #FF8C5A 40%, transparent 70%)" }} />
+              <img src="/logo.png" alt="FireReel" className="relative h-28 md:h-36 w-auto drop-shadow-[0_0_30px_rgba(224,92,42,0.4)]" />
+            </div>
+          </div>
+
           <div className="inline-flex items-center gap-2 text-[11px] tracking-[2px] uppercase text-text-tertiary mb-8 border border-border rounded-full px-4 py-2 bg-card">
             <span className="w-1.5 h-1.5 rounded-full bg-primary inline-block animate-[pulse_2s_infinite]" />
             AI speed · Human quality · Delivered globally
