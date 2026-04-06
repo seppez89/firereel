@@ -165,7 +165,7 @@ const adPreviews = [
     accent: "#C084FC",
     tag: "NEW DROP",
     tagBg: "#7C3AED",
-    videoUrl: "https://pub-4ef325eb18e2417496a343f696ab87f1.r2.dev/firereel/1%20-%204K.mp4",
+    videoUrl: "https://pub-4ef325eb18e2417496a343f696ab87f1.r2.dev/firereel/koraorganics.mp4",
     vertical: true,
   },
   {
@@ -382,7 +382,9 @@ export default function HomePage() {
             <div key={ad.id} className="group relative shrink-0 snap-start rounded-2xl overflow-hidden border border-border" style={{ height: "500px", width: ad.vertical || !ad.videoUrl ? "300px" : "889px" }}>
               {ad.videoUrl ? (
                 <>
-                  <video src={ad.videoUrl} controls playsInline className="absolute inset-0 w-full h-full object-cover" />
+                  <video controls playsInline preload="metadata" className="absolute inset-0 w-full h-full object-cover" style={{ WebkitPlaysinline: true } as React.CSSProperties}>
+                    <source src={ad.videoUrl} type="video/mp4" />
+                  </video>
                   <div className="absolute top-3 left-3 z-10 pointer-events-none">
                     <div className="text-[8px] font-bold tracking-[1.5px] uppercase px-2 py-[3px] rounded-full text-white" style={{ background: ad.tagBg }}>{ad.tag}</div>
                   </div>
