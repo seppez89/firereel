@@ -382,7 +382,7 @@ export default function HomePage() {
             <div key={ad.id} className="group relative shrink-0 snap-start rounded-2xl overflow-hidden border border-border" style={{ height: "500px", width: ad.vertical || !ad.videoUrl ? "300px" : "889px" }}>
               {ad.videoUrl ? (
                 <>
-                  <video controls playsInline preload="metadata" className="absolute inset-0 w-full h-full object-cover">
+                  <video autoPlay muted loop playsInline preload="auto" className="absolute inset-0 w-full h-full object-cover">
                     <source src={ad.videoUrl} type="video/mp4" />
                   </video>
                   <div className="absolute top-3 left-3 z-10 pointer-events-none">
