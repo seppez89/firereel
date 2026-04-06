@@ -215,14 +215,14 @@ export default function HomePage() {
       </nav>
 
       {/* ─── HERO ─── */}
-      <section className="relative pt-20 pb-16 px-6 md:px-10 max-w-[920px] mx-auto text-center overflow-hidden">
+      <section className="relative pt-8 pb-12 px-6 md:px-10 max-w-[920px] mx-auto text-center overflow-hidden">
         {/* Subtle ambient glow */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] rounded-full pointer-events-none"
           style={{ background: "radial-gradient(ellipse, rgba(224,92,42,0.07) 0%, transparent 70%)" }} />
 
         <div className="relative">
           {/* Hero logo mark */}
-          <div className="flex justify-center mb-6">
+          <div className="flex justify-center mb-3">
             <div className="relative">
               <div className="absolute inset-0 scale-150 rounded-full blur-3xl opacity-30 animate-[pulse_3s_infinite]"
                 style={{ background: "radial-gradient(circle, #E05C2A 0%, #FF8C5A 40%, transparent 70%)" }} />
