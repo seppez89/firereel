@@ -207,6 +207,7 @@ export default function HomePage() {
           <a href="#how-it-works" className="text-sm text-text-secondary hover:text-text transition">How it works</a>
           <a href="#pricing" className="text-sm text-text-secondary hover:text-text transition">Pricing</a>
           <a href="#work" className="text-sm text-text-secondary hover:text-text transition">Our work</a>
+          <a href="/blog" className="text-sm text-text-secondary hover:text-text transition">Blog</a>
           <a href="#contact" className="bg-primary text-white rounded-lg px-5 py-2.5 text-sm font-semibold hover:brightness-110 transition shadow-[0_0_20px_rgba(224,92,42,0.25)]">
             Get started →
           </a>
