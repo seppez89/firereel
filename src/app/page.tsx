@@ -169,32 +169,6 @@ const adPreviews = [
     vertical: true,
   },
   {
-    id: 3,
-    industry: "Hospitality",
-    format: "Reel",
-    brand: "Coffee by the Beans",
-    headline: "Lockleys' local coffee spot",
-    cta: "Come visit →",
-    bg: "from-[#2e1e14] to-[#1a0f08]",
-    accent: "#D4A574",
-    tag: "LOCAL FAVOURITE",
-    tagBg: "#8B5A2B",
-    videoUrl: "https://pub-4ef325eb18e2417496a343f696ab87f1.r2.dev/firereel/coffeebythebeans.mp4",
-    vertical: true,
-  },
-  {
-    id: 4,
-    industry: "Health & Fitness",
-    format: "Reel",
-    brand: "Peak Performance Gym",
-    headline: "7-day free trial. No lock-in.",
-    cta: "Claim your pass →",
-    bg: "from-[#1a2e1a] to-[#0a1a0a]",
-    accent: "#4ADE80",
-    tag: "LIMITED OFFER",
-    tagBg: "#16A34A",
-  },
-  {
     id: 5,
     industry: "Hospitality",
     format: "Reel",
@@ -210,7 +184,7 @@ const adPreviews = [
   },
 ];
 
-const filterTabs = ["All", "Real Estate", "Health & Beauty", "Hospitality", "Health & Fitness"];
+const filterTabs = ["All", "Real Estate", "Health & Beauty", "Hospitality"];
 
 /* ─── COMPONENT ─── */
 
